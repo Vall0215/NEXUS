@@ -2690,3 +2690,21 @@ footer p,footer small { color:#b9c2b1; }
   .results,.pricing-grid { grid-template-columns:1fr; }
   .result-card { min-height:135px; }
 }
+
+
+/* Contrast fix: headings inside dark simulator section */
+#simulador.dark-section .section-title h2,
+#simulador.dark-section .section-title h2:not(span) {
+    color: #f2efdf !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-text-fill-color: #f2efdf;
+}
+#simulador.dark-section .section-title h2 span {
+    color: #d6c58c !important;
+    -webkit-text-fill-color: #d6c58c;
+    font-style: italic;
+}
+#simulador.dark-section .section-title p {
+    color: #c0c7b7 !important;
+}
