@@ -2194,3 +2194,214 @@ footer p { color: #a5b5c4; }
  .chip-icon,.solar-symbol,.ai-symbol { width:29px;height:29px;font-size:16px; }
  .hero-bottomline { font-size:7px;letter-spacing:.1em; }
 }
+
+
+/* ==========================================================
+   NEXUS CREATIVE DIRECTION 02 — 3D clean-energy platform
+   ========================================================== */
+:root {
+  --nexus-ink:#061426;
+  --nexus-panel:#0b2036;
+  --nexus-panel-2:#102c45;
+  --nexus-teal:#63bcae;
+  --nexus-mint:#91d9bd;
+  --nexus-gold:#e2c45e;
+}
+body { background:#061426; color:#eef4f7; }
+.navbar {
+  height:82px; padding-inline:clamp(24px,5.5vw,88px);
+  background:rgba(5,17,31,.92); border-bottom:1px solid rgba(171,207,215,.13);
+}
+.logo { letter-spacing:.16em; }
+.logo-icon { border-radius:11px; }
+.navbar nav a { font-size:12px; color:#b5c7d1; }
+.navbar nav a:hover { color:var(--nexus-mint); }
+.nav-button { border-radius:8px; padding:12px 22px; }
+
+/* Hero composition: editorial copy + original isometric energy city */
+.hero-reimagined {
+  min-height:790px; padding:82px clamp(26px,6vw,96px) 94px;
+  display:grid; grid-template-columns:minmax(390px,.88fr) minmax(480px,1.12fr);
+  align-items:center; gap:0; background:#061426; isolation:isolate;
+}
+.hero-reimagined .hero-backdrop {
+  position:absolute; inset:0; z-index:-4;
+  background:
+    radial-gradient(ellipse at 78% 49%,rgba(54,144,139,.20),transparent 37%),
+    radial-gradient(ellipse at 60% 5%,rgba(32,79,116,.24),transparent 43%),
+    linear-gradient(115deg,#061426 12%,#081b2e 60%,#092039 100%);
+}
+.hero-reimagined::before {
+  content:""; position:absolute; inset:0; z-index:-3; pointer-events:none;
+  background-image:linear-gradient(rgba(159,203,205,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(159,203,205,.045) 1px,transparent 1px);
+  background-size:58px 58px; mask-image:linear-gradient(90deg,transparent,black 45%,black);
+}
+.hero-orbit { display:none; }
+.hero-copy { max-width:620px; z-index:2; padding:35px 0 25px; }
+.hero-reimagined .badge {
+  border:1px solid rgba(99,188,174,.3); background:rgba(35,104,97,.16);
+  color:#9be0ca; font-size:9px; letter-spacing:.15em; padding:11px 15px;
+}
+.hero-eyebrow { color:#8bcdb4!important; font-size:9px!important; letter-spacing:.2em; margin:34px 0 17px!important; }
+.hero-reimagined h1 {
+  font-size:clamp(52px,5.7vw,79px); line-height:.99; letter-spacing:-.075em;
+  margin:0 0 25px; max-width:630px; color:#f6f8f8;
+}
+.hero-reimagined h1 span { color:#e2c45e; display:inline-block; }
+.hero-reimagined .hero-description { max-width:500px; font-size:15px; line-height:1.9; color:#aebfc9; }
+.hero-reimagined .hero-buttons { margin-top:32px; gap:12px; }
+.hero-reimagined .hero-buttons button { min-height:51px; border-radius:8px; padding:0 21px; font-size:12px; }
+.hero-reimagined .primary-button { background:linear-gradient(130deg,#ead477,#c6a33d); }
+.hero-reimagined .secondary-button { background:rgba(14,38,57,.55); border-color:rgba(177,211,216,.25); }
+.hero-proof { max-width:495px; margin-top:51px; padding-top:22px; }
+.hero-proof div { gap:11px; padding:0 16px; }
+.hero-proof strong { font-size:20px; color:#e2c45e; }
+.hero-proof span { color:#91a8b4; font-size:9px; }
+
+/* Original vector illustration */
+.nexus-scene { position:relative; min-height:620px; width:100%; max-width:790px; justify-self:end; }
+.scene-halo {
+  position:absolute; width:72%; height:64%; left:14%; top:20%; border-radius:50%;
+  background:rgba(58,171,151,.19); filter:blur(80px);
+}
+.energy-city {
+  position:absolute; width:110%; height:100%; inset:0 -5% 0 -3%;
+  overflow:visible; filter:drop-shadow(0 32px 36px rgba(0,0,0,.3));
+  animation:cityFloat 8s ease-in-out infinite;
+}
+@keyframes cityFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+.scene-label-top {
+  position:absolute; top:2%; right:7%; color:#83b7b7; font-size:8px;
+  letter-spacing:.18em; display:flex; align-items:center; gap:9px;
+}
+.scene-dot { width:6px;height:6px;border-radius:50%;background:#8bd8ad;box-shadow:0 0 12px #8bd8ad; }
+.scene-float {
+  position:absolute; display:flex; align-items:center; gap:11px; padding:13px 15px;
+  border:1px solid rgba(180,218,218,.2); border-radius:11px;
+  background:linear-gradient(145deg,rgba(16,49,70,.94),rgba(6,25,43,.92));
+  box-shadow:0 20px 55px rgba(0,0,0,.3); backdrop-filter:blur(16px);
+}
+.scene-float small { display:block; color:#8daab6; font-size:7px; letter-spacing:.15em; margin-bottom:5px; }
+.scene-float strong { display:block; color:#f1f6f5; font-size:10px; line-height:1.5; }
+.scene-float em { display:block; color:#8daab6; font-size:8px; font-style:normal; margin-top:2px; }
+.float-icon { display:grid; place-items:center; width:34px;height:34px;border-radius:9px;background:rgba(99,188,174,.14);color:#8ad5bd;font-size:20px; }
+.float-icon.gold { color:#e4c65f;background:rgba(226,196,94,.13); }
+.float-icon.blue { color:#91c6ed;background:rgba(92,148,199,.14); }
+.float-live { margin-left:10px;color:#8fe0b3;font-size:9px; }
+.scene-location { top:15%;left:0; }
+.scene-solar { right:0;top:51%; }
+.scene-ai { left:8%;bottom:12%; }
+.scene-caption {
+  position:absolute; bottom:3%;right:6%;display:flex;align-items:center;gap:18px;
+  color:#7f9ba8;font-size:8px;letter-spacing:.16em;
+}
+.scene-caption b { color:#e1c45f; font-weight:600; }
+
+/* All product modules share one visual language */
+.section { padding:112px clamp(24px,7vw,108px); background:#081a2c; }
+.section:nth-of-type(even) { background:#061426; }
+.section-title { margin-bottom:45px; }
+.section-title > span { color:#83cdb0; font-size:9px; letter-spacing:.2em; }
+.section-title h2 { font-size:clamp(35px,4vw,53px); letter-spacing:-.06em; }
+.section-title h2 span { color:#e2c45e; }
+.section-title p { color:#a7bac5; line-height:1.85; }
+.map-container {
+  display:grid; grid-template-columns:minmax(0,1.55fr) minmax(280px,.75fr);
+  border:1px solid rgba(154,195,202,.16); border-radius:19px;
+  background:#0b2238; box-shadow:0 28px 75px rgba(0,0,0,.22);
+}
+#map { min-height:540px; }
+.map-data { padding:25px; background:linear-gradient(155deg,#102e47,#0a1d30); }
+.selected-location { padding-bottom:18px; }
+.data-card { border:1px solid rgba(167,205,207,.12); border-radius:12px; background:rgba(255,255,255,.025); }
+.data-card.highlight { border-color:rgba(99,188,174,.3); background:rgba(75,158,137,.09); }
+.data-card.highlight strong { color:#91d9bd; }
+.data-source strong { color:#e2c45e; }
+.full-button { border-radius:8px; }
+.dark-section { background:#061426!important; }
+.simulator {
+  display:grid; grid-template-columns:minmax(260px,.78fr) minmax(0,1.5fr); gap:18px;
+  border:1px solid rgba(154,195,202,.16); border-radius:20px; padding:20px;
+  background:linear-gradient(145deg,#0d2942,#081a2d);
+}
+.controls { border-radius:14px; background:rgba(4,17,30,.55); }
+.controls select { padding:13px; }
+.controls label { gap:12px; }
+.controls label strong { color:#8ed7b7; }
+.results { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.result-card {
+  display:flex; flex-direction:column; justify-content:center; gap:13px;
+  min-height:210px; padding:20px; border:1px solid rgba(163,202,207,.14);
+  border-radius:14px; background:linear-gradient(145deg,#153b53,#0b2339);
+}
+.result-card strong { font-size:clamp(23px,2.4vw,34px); color:#e4c65f; }
+.copilot {
+  max-width:1050px; margin:auto; border:1px solid rgba(154,195,202,.17);
+  border-radius:19px; background:linear-gradient(145deg,#0e2a43,#081a2d);
+  box-shadow:0 25px 70px rgba(0,0,0,.22);
+}
+.copilot-header { padding:21px 25px; border-bottom:1px solid rgba(169,204,207,.12); }
+.conversation { min-height:350px; padding:30px; }
+.ai-message { background:rgba(4,19,32,.7); border:1px solid rgba(99,188,174,.16); }
+.ai-message strong { color:#91d9bd; }
+.user-message { background:linear-gradient(130deg,#e8cf72,#c6a343); color:#0b1c2b; }
+.copilot-input { border-top:1px solid rgba(169,204,207,.12); }
+.copilot-input input { padding:14px 16px; }
+.copilot-input button { min-width:45px; }
+.pricing-section { background:#081a2c!important; }
+.pricing-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+.pricing-card {
+  position:relative; overflow:hidden; padding:30px;
+  border:1px solid rgba(160,198,204,.15); border-radius:17px;
+  background:linear-gradient(150deg,#102d46,#091c30);
+}
+.pricing-card.featured {
+  border-color:rgba(226,196,94,.65);
+  background:linear-gradient(150deg,#183b50,#0a2032);
+  box-shadow:0 20px 65px rgba(198,163,61,.1);
+}
+.pricing-card h3 { color:#f5f7f7; }
+.pricing-card p { color:#9fb3bf; line-height:1.7; }
+.price strong { color:#e2c45e; }
+.features li { color:#c5d2d8; }
+.pricing-button { width:100%; border-radius:8px; }
+.popular-badge { border-radius:0 0 8px 8px; }
+footer { border-top:1px solid rgba(157,195,200,.12); background:#04101d; }
+@media(max-width:1050px) {
+  .hero-reimagined { grid-template-columns:1fr; padding-top:75px; }
+  .hero-copy { max-width:760px; }
+  .nexus-scene { min-height:560px; max-width:760px; justify-self:center; }
+  .map-container { grid-template-columns:1fr; }
+  .map-data { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+  .selected-location,.data-source,.map-data .full-button { grid-column:1/-1; }
+  .data-card { margin:0; }
+}
+@media(max-width:700px) {
+  .navbar { height:68px; padding:0 18px; }
+  .navbar nav { display:none; }
+  .hero-reimagined { padding:58px 6% 38px; }
+  .hero-reimagined h1 { font-size:clamp(44px,11vw,62px); }
+  .hero-proof { margin-top:35px; }
+  .hero-proof div { padding:0 8px;gap:7px; }
+  .hero-proof strong { font-size:16px; }
+  .hero-proof span { font-size:8px; }
+  .nexus-scene { min-height:370px; margin-top:12px; }
+  .scene-float { padding:9px 10px; gap:7px; }
+  .scene-float small { font-size:6px; }
+  .scene-float strong { font-size:8px; }
+  .float-icon { width:27px;height:27px;font-size:16px; }
+  .scene-location { top:10%;left:-2%; }
+  .scene-solar { right:-2%;top:53%; }
+  .scene-ai { left:2%;bottom:7%; }
+  .scene-caption { font-size:6px; }
+  .section { padding:75px 6%; }
+  #map { min-height:380px;height:380px; }
+  .map-data { grid-template-columns:1fr; }
+  .selected-location,.data-source,.map-data .full-button { grid-column:auto; }
+  .simulator { grid-template-columns:1fr; padding:13px; }
+  .results { grid-template-columns:1fr; }
+  .result-card { min-height:135px; }
+  .pricing-grid { grid-template-columns:1fr; }
+  .pricing-card { padding:25px; }
+  .conversation { padding:18px; }
+}
