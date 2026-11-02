@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>NEXUS | Inteligencia Energética</title>
+
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <header class="navbar">
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                N
+            </span>
+
+            <span>
+                NEXUS
+            </span>
+
+        </div>
+
+
+        <nav>
+
+            <a href="#inicio">
+                Inicio
+            </a>
+
+            <a href="#mapa">
+                Mapa energético
+            </a>
+
+            <a href="#simulador">
+                Simulador
+            </a>
+
+            <a href="#copiloto">
+                Copiloto IA
+            </a>
+
+            <a href="#planes">
+                Planes
+            </a>
+
+        </nav>
+
+
+        <button
+            class="nav-button"
+            onclick="irAlMapa()"
+        >
+            Explorar
+        </button>
+
+    </header>
+
+
+
+    <main>
+
+
+        <section
+            id="inicio"
+            class="hero"
+        >
+
+            <div class="hero-content">
+
+
+                <div class="badge">
+
+                    ⚡ Inteligencia energética
+
+                </div>
+
+
+                <h1>
+
+                    Convierte los datos
+
+                    <span>
+                        en decisiones.
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    NEXUS analiza las condiciones energéticas
+                    de tu ubicación, simula escenarios de energía
+                    renovable y utiliza inteligencia artificial
+                    para ayudarte a tomar mejores decisiones.
+
+                </p>
+
+
+                <div class="hero-buttons">
+
+
+                    <button
+                        class="primary-button"
+                        onclick="irAlMapa()"
+                    >
+
+                        Explorar mi potencial →
+
+                    </button>
+
+
+                    <button
+                        class="secondary-button"
+                        onclick="mostrarDemo()"
+                    >
+
+                        Ver cómo funciona
+
+                    </button>
+
+
+                </div>
+
+
+
+                <div class="hero-info">
+
+
+                    <div>
+
+                        <strong>
+                            NASA POWER
+                        </strong>
+
+                        <small>
+                            Datos climáticos
+                        </small>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            IA
+                        </strong>
+
+                        <small>
+                            Recomendaciones
+                        </small>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Simulación
+                        </strong>
+
+                        <small>
+                            Antes de invertir
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-dashboard">
+
+
+                <div class="dashboard-header">
+
+
+                    <div>
+
+                        <small>
+                            UBICACIÓN
+                        </small>
+
+                        <strong>
+                            Barranquilla, Atlántico
+                        </strong>
+
+                    </div>
+
+
+                    <span class="status">
+
+                        ● ACTIVO
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="energy-circle">
+
+                    <div>
+
+                        <strong>
+                            5.2
+                        </strong>
+
+                        <span>
+                            kWh/m²/día
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="dashboard-label">
+
+                    <span>
+                        ☀️ Radiación solar
+                    </span>
+
+                    <strong>
+                        Alta
+                    </strong>
+
+                </div>
+
+
+
+                <div class="dashboard-label">
+
+                    <span>
+                        🌡️ Temperatura
+                    </span>
+
+                    <strong>
+                        28.4 °C
+                    </strong>
+
+                </div>
+
+
+
+                <div class="dashboard-label">
+
+                    <span>
+                        ⚡ Potencial energético
+                    </span>
+
+                    <strong class="high">
+                        ALTO
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <section
+            id="mapa"
+            class="section"
+        >
+
+
+            <div class="section-title">
+
+
+                <span>
+                    01 — MAPA ENERGÉTICO
+                </span>
+
+
+                <h2>
+
+                    Conoce el potencial
+
+                    <span>
+                        de tu ubicación.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Visualiza variables ambientales y
+                    energéticas para identificar oportunidades
+                    de generación renovable.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="map-container">
+
+
+                <div id="map"></div>
+
+
+                <div class="map-data">
+
+
+                    <div class="selected-location">
+
+                        <span>
+                            📍 UBICACIÓN SELECCIONADA
+                        </span>
+
+                        <strong id="locationName">
+                            Barranquilla, Atlántico
+                        </strong>
+
+                    </div>
+
+
+
+                    <div class="data-card">
+
+                        <span>
+                            ☀️ Radiación solar
+                        </span>
+
+                        <strong id="solarRadiation">
+                            5.2
+                        </strong>
+
+                        <small>
+                            kWh/m²/día
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="data-card">
+
+                        <span>
+                            🌡️ Temperatura
+                        </span>
+
+                        <strong id="temperature">
+                            28.4
+                        </strong>
+
+                        <small>
+                            °C promedio
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="data-card highlight">
+
+                        <span>
+                            ⚡ Potencial solar
+                        </span>
+
+                        <strong id="solarPotential">
+                            ALTO
+                        </strong>
+
+                        <small id="potentialText">
+                            Condiciones favorables
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="data-source">
+
+                        <span>
+                            Fuente de datos
+                        </span>
+
+                        <strong>
+                            NASA POWER
+                        </strong>
+
+                        <small>
+                            Prototipo · datos de demostración
+                        </small>
+
+                    </div>
+
+
+
+                    <button
+                        class="primary-button full-button"
+                        onclick="irAlSimulador()"
+                    >
+
+                        Simular escenario →
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <section
+            id="simulador"
+            class="section dark-section"
+        >
+
+
+            <div class="section-title">
+
+
+                <span>
+                    02 — SIMULADOR
+                </span>
+
+
+                <h2>
+
+                    Antes de invertir,
+
+                    <span>
+                        simula.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Explora diferentes escenarios de
+                    generación y almacenamiento energético.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="simulator">
+
+
+                <!-- CONTROLES -->
+
+                <div class="controls">
+
+
+                    <label>
+
+                        Número de paneles
+
+
+                        <input
+                            type="range"
+                            id="paneles"
+                            min="1"
+                            max="30"
+                            value="10"
+                            oninput="actualizarSimulacion()"
+                        >
+
+
+                        <strong id="panelValue">
+                            10 paneles
+                        </strong>
+
+                    </label>
+
+
+
+                    <label>
+
+                        Batería
+
+
+                        <select
+                            id="bateria"
+                            onchange="actualizarSimulacion()"
+                        >
+
+                            <option value="0">
+                                Sin batería
+                            </option>
+
+                            <option value="1">
+                                Batería pequeña
+                            </option>
+
+                            <option value="2">
+                                Batería mediana
+                            </option>
+
+                        </select>
+
+
+                    </label>
+
+
+
+                    <button
+                        class="primary-button"
+                        onclick="analizarEscenario()"
+                    >
+
+                        Analizar escenario
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- RESULTADOS -->
+
+                <div class="results">
+
+
+                    <div class="result-card">
+
+                        <span>
+                            Generación estimada
+                        </span>
+
+                        <strong id="generacion">
+                            520
+                        </strong>
+
+                        <small>
+                            kWh / mes
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="result-card">
+
+                        <span>
+                            Ahorro estimado
+                        </span>
+
+                        <strong id="ahorro">
+                            $286.000
+                        </strong>
+
+                        <small>
+                            mensual
+                        </small>
+
+                    </div>
+
+
+
+                    <div class="result-card">
+
+                        <span>
+                            Retorno estimado
+                        </span>
+
+                        <strong id="retorno">
+                            5.8
+                        </strong>
+
+                        <small>
+                            años
+                        </small>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <section
+            id="copiloto"
+            class="section"
+        >
+
+
+            <div class="section-title">
+
+
+                <span>
+                    03 — COPILOTO ENERGÉTICO
+                </span>
+
+
+                <h2>
+
+                    Los datos dicen mucho.
+
+                    <span>
+                        NEXUS te dice qué hacer.
+                    </span>
+
+                </h2>
+
+
+            </div>
+
+
+
+            <div class="copilot">
+
+
+                <div class="copilot-header">
+
+
+                    <div class="ai-icon">
+                        ✦
+                    </div>
+
+
+                    <div>
+
+                        <strong>
+                            Copiloto Energético
+                        </strong>
+
+                        <small>
+                            Inteligencia artificial
+                        </small>
+
+                    </div>
+
+
+                    <span class="online">
+                        ● ONLINE
+                    </span>
+
+
+                </div>
+
+
+
+                <div
+                    class="conversation"
+                    id="conversation"
+                >
+
+
+                    <div class="user-message">
+
+                        ¿Me conviene instalar paneles
+                        solares en esta ubicación?
+
+                    </div>
+
+
+
+                    <div class="ai-message">
+
+
+                        <strong>
+                            ✦ NEXUS
+                        </strong>
+
+
+                        <p>
+
+                            He analizado las condiciones
+                            de la ubicación y el escenario
+                            seleccionado.
+
+                        </p>
+
+
+                        <p>
+
+                            ☀️ El potencial solar es
+                            <b>alto</b>.
+
+                        </p>
+
+
+                        <p>
+
+                            Para este escenario, recomiendo
+                            evaluar una instalación fotovoltaica
+                            de tamaño medio antes de incorporar
+                            almacenamiento.
+
+                        </p>
+
+
+
+                        <div class="recommendation">
+
+
+                            <span>
+                                RECOMENDACIÓN
+                            </span>
+
+
+                            <strong>
+                                Priorizar generación solar
+                            </strong>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="copilot-input">
+
+
+                    <input
+                        type="text"
+                        id="copilotQuestion"
+                        placeholder="Pregúntale algo al Copiloto..."
+                        onkeydown="manejarEnter(event)"
+                    >
+
+
+                    <button
+                        onclick="enviarPregunta()"
+                    >
+                        ↑
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <section
+            id="planes"
+            class="section pricing-section"
+        >
+
+
+            <div class="section-title pricing-title">
+
+
+                <span>
+                    04 — PLANES
+                </span>
+
+
+                <h2>
+
+                    Elige el nivel de
+
+                    <span>
+                        inteligencia energética.
+                    </span>
+
+                </h2>
+
+
+                <p>
+
+                    Comienza explorando gratuitamente y
+                    desbloquea herramientas avanzadas
+                    cuando estés listo para tomar una
+                    decisión de inversión.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="pricing-grid">
+
+
+                <!-- FREE -->
+
+                <div class="pricing-card">
+
+
+                    <div class="pricing-header">
+
+                        <span class="plan-label">
+                            EXPLORACIÓN
+                        </span>
+
+
+                        <h3>
+                            NEXUS Free
+                        </h3>
+
+
+                        <p>
+                            Para conocer el potencial
+                            energético de una ubicación.
+                        </p>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <strong>
+                            $0
+                        </strong>
+
+                        <span>
+                            / mes
+                        </span>
+
+                    </div>
+
+
+                    <ul class="features">
+
+                        <li>
+                            ✓ Mapa energético
+                        </li>
+
+                        <li>
+                            ✓ Exploración básica
+                        </li>
+
+                        <li>
+                            ✓ Recomendación diaria
+                        </li>
+
+                        <li class="disabled">
+                            × Simulaciones ilimitadas
+                        </li>
+
+                        <li class="disabled">
+                            × Reportes personalizados
+                        </li>
+
+                    </ul>
+
+
+                    <button
+                        class="secondary-button pricing-button"
+                        onclick="seleccionarPlan('Free')"
+                    >
+                        Comenzar gratis
+                    </button>
+
+
+                </div>
+
+
+                <div class="pricing-card featured">
+
+
+                    <div class="popular-badge">
+                        MÁS ELEGIDO
+                    </div>
+
+
+                    <div class="pricing-header">
+
+                        <span class="plan-label">
+                            DECISIÓN
+                        </span>
+
+
+                        <h3>
+                            NEXUS Premium
+                        </h3>
+
+
+                        <p>
+                            Para analizar y simular una
+                            inversión energética.
+                        </p>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <strong>
+                            $29.900
+                        </strong>
+
+                        <span>
+                            / mes
+                        </span>
+
+                    </div>
+
+
+                    <ul class="features">
+
+                        <li>
+                            ✓ Mapa energético completo
+                        </li>
+
+                        <li>
+                            ✓ Simulaciones ilimitadas
+                        </li>
+
+                        <li>
+                            ✓ Copiloto Energético IA
+                        </li>
+
+                        <li>
+                            ✓ Reportes personalizados
+                        </li>
+
+                        <li>
+                            ✓ Seguimiento de escenarios
+                        </li>
+
+                    </ul>
+
+
+                    <button
+                        class="primary-button pricing-button"
+                        onclick="abrirCheckout('Premium')"
+                    >
+                        Elegir Premium →
+                    </button>
+
+
+                </div>
+
+
+                <div class="pricing-card">
+
+
+                    <div class="pricing-header">
+
+                        <span class="plan-label">
+                            PROFESIONAL
+                        </span>
+
+
+                        <h3>
+                            NEXUS Proyectos
+                        </h3>
+
+
+                        <p>
+                            Para desarrolladores y proyectos
+                            de energía renovable.
+                        </p>
+
+                    </div>
+
+
+                    <div class="price">
+
+                        <strong>
+                            Personalizado
+                        </strong>
+
+                    </div>
+
+
+                    <ul class="features">
+
+                        <li>
+                            ✓ Análisis avanzado
+                        </li>
+
+                        <li>
+                            ✓ Reportes técnicos
+                        </li>
+
+                        <li>
+                            ✓ Evaluación de proyectos
+                        </li>
+
+                        <li>
+                            ✓ Acompañamiento especializado
+                        </li>
+
+                        <li>
+                            ✓ Soluciones empresariales
+                        </li>
+
+                    </ul>
+
+
+                    <button
+                        class="secondary-button pricing-button"
+                        onclick="contactarProyectos()"
+                    >
+                        Contactar
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <div
+        id="checkoutModal"
+        class="modal-overlay"
+    >
+
+
+        <div class="checkout-modal">
+
+
+            <button
+                class="close-modal"
+                onclick="cerrarCheckout()"
+            >
+                ×
+            </button>
+
+
+            <div class="checkout-icon">
+                ⚡
+            </div>
+
+
+            <span class="checkout-label">
+                NEXUS PREMIUM
+            </span>
+
+
+            <h2>
+                Desbloquea tu potencial energético.
+            </h2>
+
+
+            <p>
+
+                Obtén acceso a simulaciones ilimitadas,
+                reportes y al Copiloto Energético.
+
+            </p>
+
+
+
+            <div class="checkout-summary">
+
+
+                <div>
+
+                    <span>
+                        Plan seleccionado
+                    </span>
+
+                    <strong>
+                        NEXUS Premium
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong>
+                        $29.900 / mes
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="payment-method">
+
+
+                <span>
+                    MÉTODO DE PAGO
+                </span>
+
+
+                <button
+                    class="payment-option active"
+                    onclick="seleccionarPago(this)"
+                >
+                    💳 Tarjeta
+                </button>
+
+
+                <button
+                    class="payment-option"
+                    onclick="seleccionarPago(this)"
+                >
+                    🏦 PSE
+                </button>
+
+
+                <button
+                    class="payment-option"
+                    onclick="seleccionarPago(this)"
+                >
+                    📱 Billetera digital
+                </button>
+
+
+            </div>
+
+
+
+            <button
+                class="primary-button checkout-button"
+                onclick="procesarPago()"
+            >
+                Continuar con el pago →
+            </button>
+
+
+            <small class="demo-payment">
+
+                Prototipo de checkout · Pago simulado
+
+            </small>
+
+
+        </div>
+
+
+    </div>
+
+
+    <footer>
+
+
+        <div class="logo">
+
+            <span class="logo-icon">
+                N
+            </span>
+
+            <span>
+                NEXUS
+            </span>
+
+        </div>
+
+
+        <p>
+
+            Inteligencia energética para decisiones
+            más inteligentes.
+
+        </p>
+
+
+        <small>
+
+            Prototipo MVP — Universidad de la Costa
+
+        </small>
+
+
+    </footer>
+
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
