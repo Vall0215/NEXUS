@@ -2405,3 +2405,288 @@ footer { border-top:1px solid rgba(157,195,200,.12); background:#04101d; }
   .pricing-card { padding:25px; }
   .conversation { padding:18px; }
 }
+
+
+/* ==========================================================
+   NEXUS — Botanical luxury / clean energy editorial identity
+   Dafont Golden + Monstera inspiration, adapted to the NEXUS mockup
+   ========================================================== */
+:root {
+  --nexus-forest:#17291f;
+  --nexus-forest-deep:#0e1c15;
+  --nexus-olive:#59664a;
+  --nexus-sage:#a6ae91;
+  --nexus-cream:#f2efdf;
+  --nexus-paper:#e8e5d5;
+  --nexus-gold:#c5a85b;
+  --nexus-ink:#1b261d;
+  --nexus-muted:#aab19f;
+}
+html { scroll-behavior:smooth; }
+body {
+  background:var(--nexus-forest-deep);
+  color:var(--nexus-cream);
+  font-family:"DM Sans",sans-serif;
+  letter-spacing:0;
+}
+h1,h2,h3,.logo,.price strong {
+  font-family:"Bodoni Moda","Times New Roman",serif;
+  font-weight:500;
+  letter-spacing:-.045em;
+}
+.navbar {
+  height:82px; padding:0 clamp(24px,5vw,82px);
+  background:rgba(14,28,21,.94);
+  border-bottom:1px solid rgba(224,221,195,.15);
+  backdrop-filter:blur(18px);
+}
+.logo { font-family:"Bodoni Moda",serif; font-size:27px; letter-spacing:.12em; color:var(--nexus-cream); }
+.logo-icon {
+  background:var(--nexus-gold); color:#182319;
+  border-radius:2px; box-shadow:none; font-family:"DM Sans",sans-serif;
+}
+.navbar nav a { color:#d0d2c4; font-size:11px; letter-spacing:.04em; }
+.navbar nav a:hover { color:#e2cf91; }
+.nav-button,.primary-button {
+  border-radius:2px; background:var(--nexus-gold); color:#17251a;
+  border:1px solid var(--nexus-gold); box-shadow:none; font-weight:700;
+}
+.secondary-button {
+  border-radius:2px; border:1px solid rgba(242,239,223,.5);
+  color:var(--nexus-cream); background:rgba(14,28,21,.35);
+}
+
+/* Hero follows the original solar-house / botanical editorial mockup */
+.hero-reimagined {
+  min-height:790px;
+  padding:90px clamp(26px,6vw,94px) 88px;
+  display:grid;
+  grid-template-columns:minmax(390px,.92fr) minmax(460px,1.08fr);
+  align-items:center; gap:2vw;
+  background:#17291f; isolation:isolate;
+}
+.hero-reimagined .hero-backdrop {
+  position:absolute; inset:0; z-index:-4;
+  background:
+    linear-gradient(90deg,rgba(14,28,21,.97) 0%,rgba(14,28,21,.88) 38%,rgba(14,28,21,.18) 100%),
+    linear-gradient(0deg,rgba(14,28,21,.65),transparent 55%),
+    url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=90") center/cover no-repeat;
+  filter:saturate(.75);
+}
+.hero-reimagined::before {
+  content:""; position:absolute; inset:0; z-index:-3;
+  background:radial-gradient(ellipse at 80% 45%,rgba(178,166,112,.18),transparent 38%);
+}
+.hero-orbit { display:none; }
+.hero-copy { max-width:650px; padding:25px 0; }
+.hero-reimagined .badge {
+  border:1px solid rgba(197,168,91,.55); border-radius:0;
+  background:rgba(23,41,31,.55); color:#e4d7aa;
+  font-size:9px; letter-spacing:.18em; padding:11px 15px;
+}
+.badge-pulse { background:#c5a85b; box-shadow:0 0 10px rgba(197,168,91,.7); }
+.hero-eyebrow {
+  color:#d1c69b!important; font-size:9px!important;
+  letter-spacing:.24em; margin:34px 0 18px!important;
+}
+.hero-reimagined h1 {
+  font-family:"Bodoni Moda",serif;
+  font-size:clamp(58px,6.2vw,91px);
+  line-height:.99; letter-spacing:-.065em; font-weight:400;
+  color:#f2efdf; margin:0 0 24px; max-width:700px;
+}
+.hero-reimagined h1 span { color:#d6c58c; font-style:italic; }
+.hero-reimagined .hero-description {
+  max-width:500px; color:#d0d2c3; font-size:14px; line-height:1.95;
+}
+.hero-reimagined .hero-buttons { margin-top:32px; gap:12px; }
+.hero-reimagined .hero-buttons button {
+  min-height:51px; padding:0 23px; border-radius:2px;
+  text-transform:uppercase; font-size:9px; letter-spacing:.12em;
+}
+.hero-proof {
+  max-width:520px; margin-top:52px; padding-top:22px;
+  border-top:1px solid rgba(242,239,223,.28);
+}
+.hero-proof div { padding:0 17px; gap:12px; }
+.hero-proof strong {
+  font-family:"Bodoni Moda",serif; color:#d5c28a; font-size:26px; font-weight:400;
+}
+.hero-proof span { color:#d0d2c3; font-size:9px; letter-spacing:.04em; }
+
+/* Replace the abstract neon city with a photographic solar architecture panel */
+.nexus-scene {
+  position:relative; min-height:590px; max-width:790px; width:100%;
+  justify-self:end; overflow:visible;
+}
+.scene-halo {
+  position:absolute; inset:12% 8% 12% 8%; border-radius:2px;
+  background:rgba(199,185,130,.18); filter:blur(55px);
+}
+.energy-city {
+  position:absolute; inset:3% 0 4%; width:100%; height:93%;
+  border-radius:2px; overflow:hidden;
+  filter:drop-shadow(0 24px 36px rgba(0,0,0,.3));
+}
+.energy-city image { width:100%; height:100%; }
+.scene-label-top {
+  position:absolute; top:1%; right:4%; color:#e2d8b8;
+  font-size:8px; letter-spacing:.2em;
+}
+.scene-dot { background:#d0bc79; box-shadow:0 0 9px #d0bc79; }
+.scene-float {
+  border:1px solid rgba(238,233,208,.34); border-radius:2px;
+  background:rgba(20,39,28,.91); box-shadow:0 16px 45px rgba(0,0,0,.26);
+  backdrop-filter:blur(12px); padding:14px 16px;
+}
+.scene-float small { color:#b9bd9f; font-size:7px; letter-spacing:.17em; }
+.scene-float strong { color:#f1edda; font-family:"DM Sans",sans-serif; font-size:10px; }
+.scene-float em { color:#b9bd9f; }
+.float-icon { border-radius:0; background:rgba(197,168,91,.16); color:#e2cf91; }
+.float-icon.gold { color:#e3d096; background:rgba(197,168,91,.2); }
+.float-icon.blue { color:#c6d0b3; background:rgba(166,174,145,.16); }
+.float-live { color:#d5c58b; }
+.scene-caption {
+  color:#e0d9bd; font-size:8px; letter-spacing:.18em;
+}
+.scene-caption b { color:#d6c58c; }
+.hero-bottomline {
+  color:#c0c2ad; font-size:8px; letter-spacing:.19em;
+}
+.scroll-cue b { color:#d6c58c; }
+
+/* Elegant botanical section system */
+.section { padding:112px clamp(24px,7vw,108px); background:#e9e6d8; color:#1b2a20; }
+.section:nth-of-type(even) { background:#17291f; color:#f2efdf; }
+.section-title > span {
+  color:#8a7744; font-size:9px; letter-spacing:.22em;
+}
+.section-title h2 {
+  font-family:"Bodoni Moda",serif; font-size:clamp(42px,4.6vw,64px);
+  line-height:1.05; font-weight:400; letter-spacing:-.055em;
+  color:inherit;
+}
+.section-title h2 span { color:#9a8247; font-style:italic; }
+.section-title p { color:#687264; font-size:14px; line-height:1.9; }
+.section:nth-of-type(even) .section-title > span { color:#c6b477; }
+.section:nth-of-type(even) .section-title h2 { color:#f2efdf; }
+.section:nth-of-type(even) .section-title h2 span { color:#d6c58c; }
+.section:nth-of-type(even) .section-title p { color:#c0c7b7; }
+
+/* Map becomes an elegant data console */
+.map-container {
+  border:1px solid rgba(35,55,39,.18); border-radius:2px;
+  background:#f4f1e6; box-shadow:0 25px 70px rgba(23,41,31,.13);
+}
+#map { min-height:540px; }
+.map-data { background:#1b3023; padding:28px; }
+.selected-location { border-bottom:1px solid rgba(235,231,211,.2); }
+.selected-location span,.data-card span { color:#c1c8b7; letter-spacing:.08em; }
+.selected-location strong { color:#f2efdf; }
+.data-card {
+  border:1px solid rgba(236,231,210,.17); border-radius:2px;
+  background:rgba(245,242,224,.045); padding:17px;
+}
+.data-card strong { color:#f1e6bd; font-family:"Bodoni Moda",serif; font-size:34px; font-weight:400; }
+.data-card small,.data-source small { color:#bdc4b4; }
+.data-card.highlight { border-color:rgba(197,168,91,.45); background:rgba(197,168,91,.1); }
+.data-card.highlight strong { color:#e0ce91; }
+.data-source { border-color:rgba(236,231,210,.2); }
+.data-source span { color:#bfc7b5; }
+.data-source strong { color:#e0ce91; }
+.full-button { border-radius:2px; }
+
+/* Simulator, AI and plans match the botanical luxury language */
+.dark-section { background:#17291f!important; }
+.simulator {
+  border:1px solid rgba(236,231,210,.18); border-radius:2px;
+  background:#203629; padding:22px; box-shadow:0 24px 65px rgba(0,0,0,.15);
+}
+.controls {
+  border:1px solid rgba(236,231,210,.16); border-radius:2px;
+  background:rgba(9,25,16,.36); padding:26px;
+}
+.controls label { color:#e4e5d6; }
+.controls label strong { color:#e0ce91; }
+.controls select,.copilot-input input {
+  border-radius:2px; border-color:rgba(235,231,211,.25);
+  background:#14271b; color:#f2efdf;
+}
+.controls input[type="range"] { accent-color:#c5a85b; }
+.controls .primary-button { border-radius:2px; }
+.results { gap:12px; }
+.result-card {
+  border:1px solid rgba(236,231,210,.16); border-radius:2px;
+  background:linear-gradient(145deg,#334b38,#203628);
+}
+.result-card span,.result-card small { color:#c4cbbb; }
+.result-card strong { color:#e2cf91; font-family:"Bodoni Moda",serif; font-weight:400; }
+.copilot {
+  border:1px solid rgba(236,231,210,.18); border-radius:2px;
+  background:#203629; box-shadow:0 22px 60px rgba(0,0,0,.13);
+}
+.copilot-header { background:#14271b; border-bottom:1px solid rgba(236,231,210,.15); }
+.copilot-header strong { color:#f2efdf; }
+.ai-icon { background:rgba(197,168,91,.16); color:#e1cf94; border-radius:2px; }
+.online { color:#c9c89b; }
+.conversation { background:transparent; }
+.user-message { background:#c5a85b; color:#17251a; border-radius:2px; }
+.ai-message { background:#17291f; border:1px solid rgba(236,231,210,.15); border-radius:2px; }
+.ai-message strong,.ai-message b { color:#e0ce91; }
+.recommendation { background:rgba(197,168,91,.1); border-color:rgba(197,168,91,.28); border-radius:2px; }
+.recommendation span,.recommendation strong { color:#e0ce91; }
+.copilot-input { background:#14271b; border-top:1px solid rgba(236,231,210,.15); }
+.copilot-input button { border-radius:2px; background:#c5a85b; color:#17251a; }
+.pricing-section { background:#e9e6d8!important; }
+.pricing-section .section-title h2 { color:#1b2a20; }
+.pricing-section .section-title p { color:#687264; }
+.pricing-grid { gap:16px; }
+.pricing-card {
+  border:1px solid rgba(35,55,39,.18); border-radius:2px;
+  background:#f3f0e4; color:#1b2a20; box-shadow:0 16px 45px rgba(23,41,31,.08);
+}
+.pricing-card h3 { color:#1b2a20; }
+.pricing-card p,.features li { color:#697365; }
+.pricing-card.featured {
+  background:#1b3023; color:#f2efdf;
+  border:1px solid #c5a85b; box-shadow:0 22px 55px rgba(23,41,31,.18);
+}
+.pricing-card.featured h3,.pricing-card.featured p,.pricing-card.featured .features li { color:#e5e5d6; }
+.pricing-card.featured .price strong { color:#e3cf8d; }
+.pricing-card .price strong { color:#88713b; font-size:38px; font-weight:400; }
+.plan-label { color:#8c7845; letter-spacing:.18em; }
+.featured .plan-label { color:#d7c68f; }
+.popular-badge { background:#c5a85b; color:#18251a; border-radius:0; }
+.pricing-button { border-radius:2px; }
+.pricing-card .secondary-button { color:#1b2a20; border-color:#8e967f; background:transparent; }
+.pricing-card.featured .secondary-button { color:#f2efdf; }
+footer { background:#0e1c15; border-top:1px solid rgba(236,231,210,.13); }
+footer p,footer small { color:#b9c2b1; }
+@media(max-width:1050px) {
+  .hero-reimagined { grid-template-columns:1fr; padding-top:75px; }
+  .hero-copy { max-width:760px; }
+  .nexus-scene { min-height:510px; max-width:760px; justify-self:center; }
+  .map-container { grid-template-columns:1fr; }
+}
+@media(max-width:700px) {
+  .navbar { height:68px; padding:0 18px; }
+  .navbar nav { display:none; }
+  .hero-reimagined { padding:58px 6% 36px; }
+  .hero-reimagined h1 { font-size:clamp(48px,12vw,68px); }
+  .hero-proof { margin-top:35px; }
+  .nexus-scene { min-height:370px; margin-top:12px; }
+  .scene-float { padding:9px 10px; gap:7px; }
+  .scene-float small { font-size:6px; }
+  .scene-float strong { font-size:8px; }
+  .float-icon { width:27px;height:27px;font-size:16px; }
+  .scene-location { top:10%;left:-2%; }
+  .scene-solar { right:-2%;top:53%; }
+  .scene-ai { left:2%;bottom:7%; }
+  .section { padding:76px 6%; }
+  .section-title h2 { font-size:42px; }
+  #map { min-height:380px;height:380px; }
+  .map-data { display:grid;grid-template-columns:1fr; }
+  .simulator { grid-template-columns:1fr; }
+  .results,.pricing-grid { grid-template-columns:1fr; }
+  .result-card { min-height:135px; }
+}
