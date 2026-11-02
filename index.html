@@ -114,14 +114,49 @@
                 </div>
             </div>
 
-            <div class="hero-art" aria-label="Visualización conceptual de energía solar">
-                <div class="art-glow"></div>
-                <div class="art-image"></div>
-                <div class="art-grid"></div>
-                <div class="floating-chip chip-location"><span class="chip-icon">⌖</span><span><small>UBICACIÓN DE ANÁLISIS</small><strong>Barranquilla, CO</strong></span></div>
-                <div class="floating-chip chip-solar"><span class="solar-symbol">☼</span><span><small>RECURSO SOLAR</small><strong>Potencial por explorar</strong></span></div>
-                <div class="floating-chip chip-ai"><span class="ai-symbol">✳</span><span><small>ANÁLISIS INTELIGENTE</small><strong>Datos · Simulación · IA</strong></span></div>
-                <div class="art-caption"><span>01 / 03</span><i></i><span>ENERGÍA QUE CONECTA</span></div>
+            <div class="hero-art nexus-scene" aria-label="Ilustración conceptual tridimensional de una ciudad con energía solar">
+                <div class="scene-halo"></div>
+                <div class="scene-label scene-label-top"><span class="scene-dot"></span> ECOSISTEMA ENERGÉTICO INTELIGENTE</div>
+                <svg class="energy-city" viewBox="0 0 760 590" role="img" aria-label="Ciudad sostenible con paneles solares y almacenamiento">
+                    <defs>
+                        <linearGradient id="skyGlow" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1b5570"/><stop offset="1" stop-color="#0a2038"/></linearGradient>
+                        <linearGradient id="towerFront" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#327b8b"/><stop offset="1" stop-color="#12324b"/></linearGradient>
+                        <linearGradient id="towerSide" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d293f"/><stop offset="1" stop-color="#071a2c"/></linearGradient>
+                        <linearGradient id="solarTop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#70c7bd"/><stop offset=".5" stop-color="#276f83"/><stop offset="1" stop-color="#153c59"/></linearGradient>
+                        <linearGradient id="goldLine"><stop stop-color="#e9d17a"/><stop offset="1" stop-color="#a77d27"/></linearGradient>
+                        <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="12"/></filter>
+                    </defs>
+                    <ellipse cx="390" cy="490" rx="290" ry="48" fill="#36a98f" opacity=".17" filter="url(#softShadow)"/>
+                    <path d="M78 430 365 265 691 430 394 565Z" fill="#0b263d" stroke="#397487" stroke-opacity=".55"/>
+                    <path d="M78 430 394 565 394 584 78 449Z" fill="#071a2b"/>
+                    <path d="M394 565 691 430 691 449 394 584Z" fill="#0b2035"/>
+                    <path d="M130 423 362 291 625 425 390 555Z" fill="#123e54" stroke="#6aaea6" stroke-opacity=".45"/>
+                    <path d="M160 421 362 307 593 425 390 540Z" fill="url(#solarTop)" stroke="#83d1c2" stroke-opacity=".55"/>
+                    <path d="m232 380 230 118M304 339l230 118M376 317l-203 115M449 354 247 469M521 391 319 507" stroke="#b3e2d7" stroke-opacity=".38" stroke-width="2"/>
+                    <g opacity=".96">
+                        <path d="m258 280 70-40 65 34-71 41Z" fill="#1b4d63"/><path d="m258 280 64 35v114l-64-36Z" fill="#174058"/><path d="m322 315 71-41v113l-71 42Z" fill="#0a293f"/>
+                        <path d="m276 281 51-29 46 24-52 30Z" fill="#6ac0b6" opacity=".6"/><path d="m276 281 45 25v79l-45-25Z" fill="#245f72"/><path d="m321 306 52-30v80l-52 29Z" fill="#12364e"/>
+                        <path d="m405 226 57-33 54 29-58 34Z" fill="#1b4d63"/><path d="m405 226 53 30v133l-53-30Z" fill="#174058"/><path d="m458 256 58-34v133l-58 34Z" fill="#0a293f"/>
+                        <path d="m420 228 42-24 37 20-43 25Z" fill="#80cfc0" opacity=".65"/>
+                        <path d="m420 228 36 20v99l-36-20Z" fill="#245f72"/><path d="m456 248 43-24v99l-43 24Z" fill="#12364e"/>
+                        <path d="m500 303 43-25 40 22-44 25Z" fill="#1b4d63"/><path d="m500 303 39 22v92l-39-22Z" fill="#174058"/><path d="m539 325 44-25v92l-44 25Z" fill="#0a293f"/>
+                    </g>
+                    <g stroke="#e8d078" stroke-width="2" fill="none" opacity=".9">
+                        <path d="M163 262v-95m0 0-27 16m27-16 26 18m-26-18v-32"/>
+                        <path d="M625 300v-112m0 0-30 18m30-18 29 20m-29-20v-38"/>
+                    </g>
+                    <g fill="#d8c36e" opacity=".95"><circle cx="163" cy="167" r="4"/><circle cx="625" cy="188" r="4"/></g>
+                    <g transform="translate(520 405)">
+                        <path d="m0 27 50-28 57 30-51 29Z" fill="#c5a84b"/><path d="m0 27 56 31v42L0 69Z" fill="#8e762f"/><path d="m56 58 51-29v42l-51 29Z" fill="#5f542d"/>
+                        <path d="m12 29 38-21 42 22-39 22Z" fill="#6bc1b5"/><path d="m12 29 41 23v23L12 52Z" fill="#245b69"/><path d="m53 52 39-22v23L53 75Z" fill="#153d53"/>
+                    </g>
+                    <path d="M112 475 385 592 680 459" stroke="url(#goldLine)" stroke-width="2" fill="none" opacity=".65"/>
+                    <circle cx="390" cy="430" r="5" fill="#e6ca69"/><circle cx="390" cy="430" r="17" fill="none" stroke="#e6ca69" opacity=".3"/>
+                </svg>
+                <div class="scene-float scene-location"><span class="float-icon">⌖</span><span><small>UBICACIÓN</small><strong>Barranquilla, Colombia</strong></span><b class="float-live">●</b></div>
+                <div class="scene-float scene-solar"><span class="float-icon gold">☼</span><span><small>RECURSO SOLAR</small><strong>NASA POWER</strong><em>Datos ambientales</em></span></div>
+                <div class="scene-float scene-ai"><span class="float-icon blue">✳</span><span><small>ANÁLISIS NEXUS</small><strong>Datos que se convierten<br>en decisiones</strong></span></div>
+                <div class="scene-caption"><span>ENERGÍA · DATOS · INTELIGENCIA</span><b>01 — 03</b></div>
             </div>
 
             <div class="hero-bottomline">
