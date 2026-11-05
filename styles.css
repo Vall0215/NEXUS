@@ -4591,13 +4591,13 @@ h1,h2,h3,h4,
 
 /* NEXUS — elegant serif display typography (Monik-inspired alternative) */
 :root {
-  --nx-display: "Cormorant Garamond", Georgia, serif;
+  --nx-display: "Bodoni Moda", Georgia, serif;
 }
 h1, h2, h3, h4,
 .hero-reimagined h1,
 .section-title h2,
 .pricing-card h3 {
-  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-family: "Bodoni Moda", Georgia, serif !important;
   font-weight: 600 !important;
   letter-spacing: -0.025em !important;
   line-height: 1.02 !important;
