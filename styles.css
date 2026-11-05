@@ -4130,3 +4130,94 @@ footer p,footer small { color:#c6c6c6!important; }
   .nx-reveal { opacity:1!important;transform:none!important; }
   .nx-section-transition span,.nx-section-transition i { animation:none!important; }
 }
+
+
+/* ==========================================================
+   NEXUS — QUIET EDITORIAL REFINEMENT
+   Dayos principles, reduced visual noise and clearer hierarchy.
+   ========================================================== */
+:root {
+  --nx-canvas:#e8e8e6;
+  --nx-paper:#fff;
+  --nx-mist:#f5f5f3;
+  --nx-carbon:#171817;
+  --nx-graphite:#303230;
+  --nx-slate:#626460;
+  --nx-smoke:#898b86;
+  --nx-ash:#d5d6d2;
+  --nx-mint:#d9ead5;
+  --nx-yellow:#e8e5bd;
+}
+html,body { background:var(--nx-canvas)!important;color:var(--nx-carbon)!important; }
+.navbar {
+  background:rgba(232,232,230,.96)!important;
+  border-bottom:1px solid rgba(23,24,23,.08)!important;
+  box-shadow:none!important;
+}
+.navbar nav { background:rgba(255,255,255,.78)!important; }
+.navbar nav a { color:#555!important; }
+.nav-button { background:var(--nx-carbon)!important;color:#fff!important; }
+.hero-reimagined { background:var(--nx-canvas)!important; }
+.hero-reimagined h1 {
+  font-size:clamp(56px,7vw,92px)!important;
+  line-height:.96!important;letter-spacing:-.035em!important;
+  max-width:760px!important;
+}
+.hero-reimagined h1 span { color:var(--nx-carbon)!important; }
+.hero-eyebrow,.scene-label-top,.scene-caption,.hero-bottomline {
+  color:var(--nx-smoke)!important;
+}
+.badge,.hero-reimagined .badge {
+  background:var(--nx-mint)!important;color:var(--nx-carbon)!important;
+}
+.nx-section-transition { height:28px!important;background:var(--nx-canvas)!important; }
+.nx-section-transition::before { opacity:.35!important; }
+.nx-section-transition span,.nx-section-transition i { display:none!important; }
+.section,.section:nth-of-type(even),.dark-section,.pricing-section {
+  background:var(--nx-canvas)!important;color:var(--nx-carbon)!important;
+  padding-top:76px!important;padding-bottom:76px!important;
+}
+.section-title { margin-bottom:32px!important; }
+.section-title h2 {
+  font-size:clamp(42px,4.8vw,64px)!important;
+  line-height:.98!important;letter-spacing:-.025em!important;
+}
+.section-title p { max-width:560px!important;font-size:15px!important;color:#626460!important; }
+.map-container {
+  background:var(--nx-paper)!important;padding:12px!important;
+  border-radius:24px!important;gap:12px!important;
+}
+#map { border-radius:18px!important; }
+.map-data { background:var(--nx-mist)!important;border-radius:18px!important;padding:20px!important; }
+.data-card,.data-card:nth-of-type(2),.data-card.highlight {
+  background:#fff!important;color:var(--nx-carbon)!important;
+  border-radius:18px!important;padding:18px!important;
+}
+.data-card:nth-of-type(2) { background:#fff!important; }
+.data-card.highlight { background:var(--nx-carbon)!important; }
+.data-card span,.data-card small { color:#70726d!important; }
+.data-card strong { color:var(--nx-carbon)!important;font-size:34px!important; }
+.data-card.highlight span,.data-card.highlight small,.data-card.highlight strong { color:#fff!important; }
+#simulador { background:var(--nx-carbon)!important; }
+#simulador .section-title h2,#simulador .section-title h2 span { color:#fff!important; }
+#simulador .section-title p { color:#bfc1bc!important; }
+.controls { border-radius:24px!important;background:#fff!important; }
+.result-card,.result-card:nth-child(1),.result-card:nth-child(2),.result-card:nth-child(3),.result-card:nth-child(4) {
+  border-radius:22px!important;min-height:170px!important;padding:22px!important;
+}
+.result-card:nth-child(1),.result-card:nth-child(2),.result-card:nth-child(3) { background:#fff!important; }
+.result-card span,.result-card small { color:#686a65!important; }
+.result-card strong { color:var(--nx-carbon)!important;font-size:38px!important; }
+#copiloto,#planes { background:var(--nx-canvas)!important; }
+.copilot { border-radius:24px!important;background:#fff!important; }
+.copilot-header,.conversation,.copilot-input { background:#fff!important; }
+.user-message,.ai-message { border-radius:18px!important;background:var(--nx-mist)!important; }
+.recommendation { background:var(--nx-mint)!important;border-radius:14px!important; }
+.pricing-card { border-radius:24px!important;background:#fff!important; }
+.pricing-card.featured { background:var(--nx-carbon)!important; }
+.popular-badge { background:var(--nx-mint)!important;color:var(--nx-carbon)!important; }
+.scene-float { border-radius:18px!important;background:#fff!important; }
+@media(max-width:700px) {
+  .hero-reimagined h1 { font-size:clamp(50px,12vw,72px)!important; }
+  .section-title h2 { font-size:clamp(40px,10vw,54px)!important; }
+}
