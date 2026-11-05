@@ -556,3 +556,64 @@ document.addEventListener(
 
     }
 );
+
+/* NEXUS interaction polish: scroll reveals, header state and gentle 3D parallax */
+document.addEventListener("DOMContentLoaded", function () {
+    const reduceMotion = window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const revealTargets = document.querySelectorAll(
+        ".section-title, .map-container, .simulator, .copilot, .pricing-card, .payment-method"
+    );
+
+    revealTargets.forEach(function (element, index) {
+        element.classList.add("nx-reveal");
+        if (element.classList.contains("pricing-card")) {
+            element.dataset.nxDelay = String((index % 4) + 1);
+        }
+    });
+
+    if ("IntersectionObserver" in window && !reduceMotion) {
+        const revealObserver = new IntersectionObserver(function (entries, observer) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("nx-visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: "0px 0px -45px 0px" });
+
+        revealTargets.forEach(function (element) {
+            revealObserver.observe(element);
+        });
+    } else {
+        revealTargets.forEach(function (element) {
+            element.classList.add("nx-visible");
+        });
+    }
+
+    const navbar = document.querySelector(".navbar");
+    function updateNavbar() {
+        if (navbar) navbar.classList.toggle("nx-scrolled", window.scrollY > 24);
+    }
+    updateNavbar();
+    window.addEventListener("scroll", updateNavbar, { passive: true });
+
+    const scene = document.querySelector(".nexus-scene");
+    if (scene && !reduceMotion && window.matchMedia("(pointer:fine)").matches) {
+        const hero = document.querySelector(".hero-reimagined");
+        if (hero) {
+            hero.addEventListener("pointermove", function (event) {
+                const bounds = hero.getBoundingClientRect();
+                const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+                const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+                scene.style.transform =
+                    "perspective(1200px) rotateY(" + (x * 2.4).toFixed(2) +
+                    "deg) rotateX(" + (-y * 1.8).toFixed(2) + "deg)";
+            });
+            hero.addEventListener("pointerleave", function () {
+                scene.style.transform = "";
+            });
+        }
+    }
+});
