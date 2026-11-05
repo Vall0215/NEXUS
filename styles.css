@@ -3671,3 +3671,109 @@ footer p,footer small { color:var(--nx-muted)!important; }
     min-height:150px;border-radius:24px!important;
   }
 }
+
+
+/* ==========================================================
+   NEXUS — POLISHED INTERACTION & TRANSITION SYSTEM
+   Restrained motion, staggered reveals, tactile controls.
+   ========================================================== */
+:root {
+  --nx-ease:cubic-bezier(.22,.75,.25,1);
+  --nx-duration:420ms;
+}
+html { scroll-behavior:smooth;scroll-padding-top:86px; }
+body { -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility; }
+::selection { background:rgba(132,125,255,.35);color:#fff; }
+
+/* Reveal only content blocks; section backgrounds remain stable */
+.nx-reveal {
+  opacity:0;
+  transform:translate3d(0,26px,0);
+  transition:opacity 780ms var(--nx-ease),transform 780ms var(--nx-ease);
+  will-change:opacity,transform;
+}
+.nx-reveal.nx-visible { opacity:1;transform:translate3d(0,0,0); }
+.nx-reveal[data-nx-delay="1"] { transition-delay:90ms; }
+.nx-reveal[data-nx-delay="2"] { transition-delay:180ms; }
+.nx-reveal[data-nx-delay="3"] { transition-delay:270ms; }
+.nx-reveal[data-nx-delay="4"] { transition-delay:360ms; }
+
+/* Header glass gains definition after the first scroll */
+.navbar { transition:background 300ms ease,border-color 300ms ease,backdrop-filter 300ms ease!important; }
+.navbar.nx-scrolled {
+  background:rgba(15,16,17,.92)!important;
+  border-bottom-color:rgba(255,255,255,.13)!important;
+  backdrop-filter:blur(24px)!important;
+}
+
+/* Smooth, controlled hover response */
+.primary-button,.secondary-button,.nav-button,.pricing-button,
+.payment-option,.full-button {
+  transition:transform 220ms var(--nx-ease),background-color 220ms ease,
+             border-color 220ms ease,color 220ms ease,opacity 220ms ease!important;
+}
+.primary-button:hover,.nav-button:hover,.pricing-button:hover {
+  transform:translateY(-2px)!important;
+}
+.secondary-button:hover {
+  background:rgba(255,255,255,.09)!important;transform:translateY(-2px)!important;
+}
+.primary-button:active,.secondary-button:active,.nav-button:active,.pricing-button:active {
+  transform:translateY(0) scale(.985)!important;
+}
+.map-container,.controls,.copilot,.pricing-card,.data-card,.result-card {
+  transition:transform 420ms var(--nx-ease),border-color 300ms ease,
+             background-color 300ms ease,filter 300ms ease!important;
+}
+.map-container:hover,.controls:hover,.copilot:hover,.pricing-card:hover {
+  transform:translateY(-4px)!important;
+}
+.result-card:hover,.data-card:hover {
+  transform:translateY(-5px) scale(1.012)!important;
+  filter:brightness(1.045);
+}
+.pricing-card:hover { border-color:rgba(255,255,255,.18)!important; }
+
+/* Clear keyboard focus and elegant input feedback */
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
+  outline:2px solid var(--nx-pale-iris,#d1c9ff)!important;
+  outline-offset:3px!important;
+}
+.controls select,.controls input,.copilot-input input {
+  transition:border-color 220ms ease,background-color 220ms ease,box-shadow 220ms ease!important;
+}
+.controls select:focus,.controls input:focus,.copilot-input input:focus {
+  border-color:rgba(132,125,255,.8)!important;
+  box-shadow:0 0 0 3px rgba(132,125,255,.13)!important;
+}
+
+/* Data cards animate in without exaggerated glow */
+.result-card { transform-origin:center bottom; }
+.data-card strong,.result-card strong { transition:opacity 220ms ease,transform 300ms var(--nx-ease); }
+.result-card:hover strong,.data-card:hover strong { transform:translateY(-2px); }
+
+/* Map and chat get a subtle entrance when first revealed */
+.map-container,#map,.conversation { transition:opacity 500ms ease; }
+.ai-message,.user-message {
+  animation:nx-message-in 360ms var(--nx-ease) both;
+}
+@keyframes nx-message-in {
+  from { opacity:0;transform:translateY(8px); }
+  to { opacity:1;transform:translateY(0); }
+}
+
+/* Hero scene: gentle pointer parallax is applied by JS when available */
+.nexus-scene { transition:transform 600ms var(--nx-ease); }
+.energy-city { transition:filter 500ms ease; }
+.scene-float { transition:transform 500ms var(--nx-ease),border-color 300ms ease!important; }
+.scene-float:hover { border-color:rgba(255,255,255,.28)!important; }
+
+/* Respect users who request reduced motion */
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto!important; }
+  *,*::before,*::after {
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+  .nx-reveal { opacity:1!important;transform:none!important; }
+}
