@@ -4589,17 +4589,18 @@ h1,h2,h3,h4,
 .pricing-card .pricing-button:disabled { opacity:.65!important; }
 
 
-/* NEXUS — elegant serif display typography (Monik-inspired alternative) */
+/* NEXUS — high-contrast Didone display style, inspired by the reference */
 :root {
-  --nx-display: "Bodoni Moda", Georgia, serif;
+  --nx-display: "Bodoni Moda", "Didot", "Bodoni MT", Georgia, serif;
 }
 h1, h2, h3, h4,
 .hero-reimagined h1,
 .section-title h2,
 .pricing-card h3 {
-  font-family: "Bodoni Moda", Georgia, serif !important;
-  font-weight: 600 !important;
-  letter-spacing: -0.025em !important;
+  font-family: "Bodoni Moda", "Didot", "Bodoni MT", Georgia, serif !important;
+  font-weight: 500 !important;
+  font-optical-sizing: auto;
+  letter-spacing: -0.035em !important;
   line-height: 1.02 !important;
 }
 .hero-reimagined h1 {
@@ -4611,7 +4612,7 @@ h1, h2, h3, h4,
 .pricing-card h3 {
   font-size: 27px !important;
 }
-/* Keep technical values and interface typography in their existing families. */
+/* Keep interface copy and technical values crisp and readable. */
 .price strong, .data-card strong, .result-card strong,
 body, p, button, input, select, nav, label {
   font-family: "Inter", sans-serif;
