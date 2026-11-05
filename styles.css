@@ -4587,3 +4587,32 @@ h1,h2,h3,h4,
   -webkit-text-fill-color:#012624!important;
 }
 .pricing-card .pricing-button:disabled { opacity:.65!important; }
+
+
+/* NEXUS — elegant serif display typography (Monik-inspired alternative) */
+:root {
+  --nx-display: "Cormorant Garamond", Georgia, serif;
+}
+h1, h2, h3, h4,
+.hero-reimagined h1,
+.section-title h2,
+.pricing-card h3 {
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em !important;
+  line-height: 1.02 !important;
+}
+.hero-reimagined h1 {
+  font-size: clamp(48px, 5.1vw, 66px) !important;
+}
+.section-title h2 {
+  font-size: clamp(38px, 3.7vw, 48px) !important;
+}
+.pricing-card h3 {
+  font-size: 27px !important;
+}
+/* Keep technical values and interface typography in their existing families. */
+.price strong, .data-card strong, .result-card strong,
+body, p, button, input, select, nav, label {
+  font-family: "Inter", sans-serif;
+}
