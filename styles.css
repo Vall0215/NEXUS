@@ -4221,3 +4221,74 @@ html,body { background:var(--nx-canvas)!important;color:var(--nx-carbon)!importa
   .hero-reimagined h1 { font-size:clamp(50px,12vw,72px)!important; }
   .section-title h2 { font-size:clamp(40px,10vw,54px)!important; }
 }
+
+
+/* ==========================================================
+   NEXUS — TYPOGRAPHY CALM DOWN
+   Smaller scale, softer weight, less condensed display.
+   ========================================================== */
+:root {
+  --nx-display:"Inter",Arial,sans-serif;
+  --nx-body:"Inter",Arial,sans-serif;
+  --nx-mono:"IBM Plex Mono","Roboto Mono",monospace;
+}
+body { font-size:15px!important;line-height:1.5!important; }
+h1,h2,h3,h4 {
+  font-family:"Inter",Arial,sans-serif!important;
+  font-weight:600!important;
+  letter-spacing:-.045em!important;
+  text-transform:none!important;
+  line-height:1.08!important;
+}
+.hero-reimagined h1 {
+  max-width:680px!important;
+  font-family:"Inter",Arial,sans-serif!important;
+  font-size:clamp(42px,5.2vw,68px)!important;
+  font-weight:600!important;
+  line-height:1.04!important;
+  letter-spacing:-.055em!important;
+  text-transform:none!important;
+  margin-bottom:22px!important;
+}
+.hero-reimagined h1 span {
+  font-family:inherit!important;font-weight:600!important;
+  text-transform:none!important;letter-spacing:inherit!important;
+}
+.hero-eyebrow { font-size:10px!important;letter-spacing:.08em!important; }
+.hero-description { font-size:15px!important;line-height:1.55!important; }
+.hero-proof strong { font-size:11px!important; }
+.hero-proof span { font-size:11px!important; }
+.section-title h2 {
+  font-family:"Inter",Arial,sans-serif!important;
+  font-size:clamp(34px,3.4vw,46px)!important;
+  font-weight:600!important;
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+  text-transform:none!important;
+}
+.section-title h2 span {
+  font:inherit!important;letter-spacing:inherit!important;
+  text-transform:none!important;
+}
+.section-title p { font-size:15px!important;line-height:1.55!important; }
+.pricing-card h3,.pricing-card.featured h3 {
+  font:600 25px/1.15 "Inter",Arial,sans-serif!important;
+  letter-spacing:-.04em!important;text-transform:none!important;
+}
+.price strong,.pricing-card.featured .price strong {
+  font:600 34px/1.1 "Inter",Arial,sans-serif!important;
+  letter-spacing:-.04em!important;
+}
+.data-card strong { font:600 30px/1.1 "Inter",Arial,sans-serif!important;letter-spacing:-.04em!important; }
+.result-card strong { font:600 34px/1.1 "Inter",Arial,sans-serif!important;letter-spacing:-.04em!important; }
+.scene-float strong { font-size:12px!important; }
+.navbar nav a { font-size:12px!important; }
+.logo { font-size:18px!important;letter-spacing:-.04em!important; }
+.plan-label,.popular-badge,.badge,.hero-bottomline,.scene-label-top,.scene-caption {
+  font-size:9px!important;letter-spacing:.06em!important;
+}
+@media(max-width:700px) {
+  .hero-reimagined h1 { font-size:clamp(38px,10vw,54px)!important; }
+  .section-title h2 { font-size:clamp(32px,8vw,40px)!important; }
+  .data-card strong,.result-card strong { font-size:30px!important; }
+}
