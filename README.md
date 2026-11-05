@@ -2,21 +2,13 @@
 
 NEXUS ayuda a hogares y empresas a explorar condiciones ambientales, evaluar escenarios energéticos y recibir orientación para tomar decisiones antes de invertir.
 
-## Stack
-
-- Frontend: HTML, CSS y JavaScript.
-- Mapa: Leaflet + OpenStreetMap.
-- Backend: Node.js 20+ y Express.
-- Datos ambientales: NASA POWER Daily Point API.
-- Copiloto: adaptador de servidor para un proveedor compatible con OpenAI Chat Completions.
-
 ## Ejecutar localmente
 
 1. Instala Node.js 20 o superior.
 2. Copia `.env.example` a `.env`.
 3. Ejecuta `npm install`.
 4. Ejecuta `npm run dev`.
-5. Abre http://localhost:3000.
+5. Abre [http://localhost:3000.](https://vall0215.github.io/NEXUS/)
 
 ## API
 
