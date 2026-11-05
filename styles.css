@@ -4543,3 +4543,47 @@ footer p,footer small { color:var(--nx-silver)!important; }
   .result-card { min-height:120px!important; }
   .hero-proof { gap:14px!important; }
 }
+
+
+/* NEXUS — refined technical typography + pricing CTA contrast */
+:root {
+  --nx-display:"Rajdhani","Inter",sans-serif;
+  --nx-body:"Inter",sans-serif;
+}
+h1,h2,h3,h4,
+.hero-reimagined h1,
+.section-title h2,
+.pricing-card h3,
+.price strong,
+.data-card strong,
+.result-card strong {
+  font-family:"Rajdhani","Inter",sans-serif!important;
+  font-weight:600!important;
+}
+.hero-reimagined h1 { font-size:clamp(46px,5vw,66px)!important;letter-spacing:-.025em!important; }
+.section-title h2 { font-size:clamp(36px,3.6vw,48px)!important;letter-spacing:-.02em!important; }
+.pricing-card h3 { font-size:26px!important; }
+.price strong { font-size:34px!important; }
+.data-card strong,.result-card strong { font-size:34px!important; }
+.pricing-card:not(.featured) .secondary-button.pricing-button {
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;min-height:48px!important;padding:13px 18px!important;
+  background:var(--nx-deep)!important;color:#edfffe!important;
+  border:1px solid rgba(203,255,252,.22)!important;
+  border-radius:6px!important;font:500 13px "Inter",sans-serif!important;
+  opacity:1!important;visibility:visible!important;
+  -webkit-text-fill-color:#edfffe!important;
+}
+.pricing-card:not(.featured) .secondary-button.pricing-button:hover {
+  background:#06413d!important;border-color:rgba(203,255,252,.45)!important;
+}
+.pricing-card.featured .primary-button.pricing-button {
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;min-height:48px!important;padding:13px 18px!important;
+  background:var(--nx-aurora)!important;color:#012624!important;
+  border:0!important;border-radius:6px!important;
+  font:500 13px "Inter",sans-serif!important;
+  opacity:1!important;visibility:visible!important;
+  -webkit-text-fill-color:#012624!important;
+}
+.pricing-card .pricing-button:disabled { opacity:.65!important; }
