@@ -5070,3 +5070,45 @@ html body #simulador .controls button.primary-button:hover {
   .scene-ai { bottom:8%!important; }
   .scene-caption { font-size:7px!important; }
 }
+
+
+/* New hero composition: sculptural 3D energy core, no floating info cards */
+.nexus-scene.nx-energy-core {
+  min-height:660px!important;
+  display:block!important;
+  position:relative!important;
+  overflow:visible!important;
+  perspective:1200px;
+  background:
+    radial-gradient(ellipse at 50% 48%,rgba(218,164,67,.16),transparent 38%),
+    radial-gradient(ellipse at 50% 78%,rgba(169,121,36,.08),transparent 48%)!important;
+}
+.nx-energy-core .scene-halo {
+  position:absolute;left:17%!important;top:17%!important;width:66%!important;height:66%!important;
+  border-radius:50%;background:rgba(201,145,48,.24)!important;filter:blur(92px)!important;z-index:0;
+}
+.nx-energy-core .nexus-three-canvas { position:absolute!important;inset:0!important;width:100%!important;height:100%!important;z-index:2; }
+.core-kicker,.core-caption,.core-orbit-label { position:absolute;z-index:4;pointer-events:none;font-family:"IBM Plex Mono",monospace;letter-spacing:.16em; }
+.core-kicker { top:7%;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;color:#e7cf96;font-size:9px;white-space:nowrap; }
+.core-orbit-label { color:rgba(224,201,150,.7);font-size:8px;white-space:nowrap; }
+.core-orbit-label i { display:inline-block;width:5px;height:5px;border-radius:50%;background:#e9c46a;box-shadow:0 0 10px rgba(233,196,106,.8);vertical-align:middle; }
+.core-label-one { top:27%;right:0; }
+.core-label-two { bottom:25%;left:0; }
+.core-caption { bottom:5%;left:50%;transform:translateX(-50%);display:flex;gap:24px;color:#b8aa8d;font-size:8px;white-space:nowrap; }
+.core-caption b { color:#e9c46a;font-weight:500; }
+@media(max-width:900px) {
+ .nexus-scene.nx-energy-core { min-height:560px!important; }
+ .core-label-one { right:2%; }
+ .core-label-two { left:2%; }
+}
+@media(max-width:600px) {
+ .nexus-scene.nx-energy-core { min-height:460px!important; }
+ .core-kicker { top:4%;font-size:8px; }
+ .core-orbit-label { font-size:7px; }
+ .core-label-one { top:20%; }
+ .core-label-two { bottom:20%; }
+ .core-caption { bottom:3%;font-size:7px;gap:12px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .nx-energy-core .nexus-three-canvas { animation:none!important; }
+}
