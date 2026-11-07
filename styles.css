@@ -4797,3 +4797,63 @@ html body #simulador .controls button.primary-button:hover {
   color: #171208 !important;
   -webkit-text-fill-color: #171208 !important;
 }
+
+
+/* React Bits-inspired motion layer — adapted to vanilla HTML/CSS/JS */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-reimagined::before {
+    content: "";
+    position: absolute;
+    inset: -15%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: .7;
+    background:
+      radial-gradient(ellipse at 68% 35%, rgba(233,196,106,.13), transparent 34%),
+      radial-gradient(ellipse at 22% 75%, rgba(169,121,36,.10), transparent 38%);
+    filter: blur(28px);
+    animation: nx-aurora-drift 18s ease-in-out infinite alternate;
+  }
+  .hero-reimagined .hero-copy,
+  .hero-reimagined .hero-art { position: relative; z-index: 1; }
+  @keyframes nx-aurora-drift {
+    from { transform: translate3d(-1.5%, -1%, 0) scale(1); }
+    to { transform: translate3d(1.5%, 1.5%, 0) scale(1.06); }
+  }
+  .hero-reimagined h1 { animation: nx-title-reveal .9s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-description { animation: nx-title-reveal .9s .12s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-buttons { animation: nx-title-reveal .9s .22s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes nx-title-reveal {
+    from { opacity: 0; transform: translateY(18px); filter: blur(5px); }
+    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+  .nx-spotlight {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    --nx-pointer-x: 50%;
+    --nx-pointer-y: 50%;
+  }
+  .nx-spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(340px circle at var(--nx-pointer-x) var(--nx-pointer-y), rgba(233,196,106,.15), transparent 68%);
+    transition: opacity .28s ease;
+  }
+  .nx-spotlight:hover::after { opacity: 1; }
+  .nx-spotlight > * { position: relative; z-index: 1; }
+  .nx-metric-pop { animation: nx-metric-pop .42s ease-out; }
+  @keyframes nx-metric-pop {
+    0% { transform: translateY(5px) scale(.97); opacity: .72; }
+    65% { transform: translateY(-1px) scale(1.025); opacity: 1; }
+    100% { transform: translateY(0) scale(1); }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-reimagined::before, .hero-reimagined h1,
+  .hero-description, .hero-buttons { animation: none !important; }
+}
