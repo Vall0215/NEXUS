@@ -5305,3 +5305,58 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
   .result-card { padding:15px!important;min-height:120px!important; }
   .controls { padding:20px!important; }
 }
+
+
+/* Fix featured-plan badge collision: separate badge and category label. */
+.pricing-card.featured {
+  position:relative!important;
+  overflow:hidden;
+}
+.pricing-card.featured .popular-badge {
+  position:absolute!important;
+  top:20px!important;
+  right:24px!important;
+  left:auto!important;
+  bottom:auto!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:max-content!important;
+  max-width:calc(100% - 48px)!important;
+  min-height:25px!important;
+  padding:6px 10px!important;
+  margin:0!important;
+  white-space:nowrap!important;
+  line-height:1!important;
+  transform:none!important;
+  border:1px solid rgba(233,196,106,.28)!important;
+  border-radius:6px!important;
+  background:rgba(233,196,106,.10)!important;
+  color:#e9c46a!important;
+  font:500 9px "IBM Plex Mono",monospace!important;
+  letter-spacing:.10em!important;
+  z-index:4!important;
+}
+.pricing-card.featured .pricing-header {
+  position:relative!important;
+  padding-top:36px!important;
+  min-height:181px!important;
+}
+.pricing-card.featured .plan-label {
+  display:inline-block!important;
+  position:relative!important;
+  margin:0 0 5px!important;
+  clear:both!important;
+  color:#d8bb75!important;
+  line-height:1.4!important;
+  z-index:1!important;
+}
+@media(max-width:600px) {
+  .pricing-card.featured .popular-badge {
+    top:16px!important;right:16px!important;
+    max-width:calc(100% - 32px)!important;
+  }
+  .pricing-card.featured .pricing-header {
+    padding-top:38px!important;min-height:185px!important;
+  }
+}
