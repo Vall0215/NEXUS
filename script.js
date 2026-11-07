@@ -617,3 +617,40 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
+
+
+/* React Bits-inspired interactions, implemented without a React dependency */
+document.addEventListener("DOMContentLoaded", function () {
+    const reduceMotion = window.matchMedia &&
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const spotlightTargets = document.querySelectorAll(
+        ".data-card, .result-card, .pricing-card, .map-data, .controls, .copilot"
+    );
+
+    spotlightTargets.forEach(function (card) {
+        card.classList.add("nx-spotlight");
+        if (reduceMotion || !window.matchMedia("(pointer:fine)").matches) return;
+        card.addEventListener("pointermove", function (event) {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--nx-pointer-x", (event.clientX - rect.left) + "px");
+            card.style.setProperty("--nx-pointer-y", (event.clientY - rect.top) + "px");
+        });
+    });
+
+    /* Subtle count-up-style feedback whenever simulator metrics recalculate. */
+    const metricTargets = document.querySelectorAll(".result-card strong, .data-card strong");
+    if (!reduceMotion && "MutationObserver" in window) {
+        const metricObserver = new MutationObserver(function (entries) {
+            entries.forEach(function (entry) {
+                const metric = entry.target;
+                metric.classList.remove("nx-metric-pop");
+                void metric.offsetWidth;
+                metric.classList.add("nx-metric-pop");
+            });
+        });
+        metricTargets.forEach(function (metric) {
+            metricObserver.observe(metric, { childList: true, characterData: true, subtree: true });
+        });
+    }
+});
