@@ -5595,3 +5595,59 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
   }
   .hero-reimagined h1.nx-masked-heading .nx-mask-accent { animation:none!important; }
 }
+
+
+/* TRUE MASKED HEADING: animated metallic energy texture clipped INSIDE every glyph.
+   Inspired by React Bits Masked Heading (drifting image/colour mesh + word reveal). */
+.hero-reimagined h1.nx-masked-heading .nx-mask-word,
+.hero-reimagined h1.nx-masked-heading .nx-mask-accent {
+  color:transparent!important;
+  background-image:
+    radial-gradient(ellipse at 18% 32%,rgba(255,246,218,.98) 0%,rgba(255,246,218,0) 22%),
+    radial-gradient(ellipse at 78% 68%,rgba(166,108,36,.92) 0%,rgba(166,108,36,0) 30%),
+    radial-gradient(ellipse at 48% 10%,rgba(245,223,160,.95) 0%,rgba(245,223,160,0) 25%),
+    radial-gradient(ellipse at 85% 18%,rgba(255,255,255,.72) 0%,rgba(255,255,255,0) 17%),
+    linear-gradient(118deg,#6d4823 0%,#e5c27a 18%,#fff5d9 31%,#987044 44%,#f2e5c8 58%,#bd8d45 73%,#fff0c5 88%,#79501f 100%),
+    repeating-linear-gradient(112deg,rgba(255,255,255,.12) 0 1px,rgba(45,30,12,.08) 1px 3px,transparent 3px 7px)!important;
+  background-size:170% 170%,190% 190%,160% 160%,210% 210%,260% 100%,100% 100%!important;
+  background-position:0% 20%,100% 70%,40% 0%,100% 0%,0% 50%,0 0!important;
+  background-clip:text!important;
+  -webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  filter:drop-shadow(0 1px 0 rgba(233,196,106,.08));
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-word,
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-accent {
+  animation:
+    nx-masked-texture-drift 12s ease-in-out infinite alternate!important;
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-word {
+  animation-delay:0s!important;
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-word-2 {
+  animation-delay:-3s!important;
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-accent {
+  animation-delay:-6s!important;
+}
+@keyframes nx-masked-texture-drift {
+  0% {
+    background-position:0% 20%,100% 70%,40% 0%,100% 0%,0% 50%,0 0;
+    filter:brightness(.9) drop-shadow(0 1px 0 rgba(233,196,106,.08));
+  }
+  50% {
+    background-position:65% 80%,25% 20%,85% 65%,20% 80%,55% 50%,0 0;
+    filter:brightness(1.12) drop-shadow(0 0 8px rgba(233,196,106,.10));
+  }
+  100% {
+    background-position:100% 0%,0% 100%,10% 20%,80% 30%,100% 50%,0 0;
+    filter:brightness(1) drop-shadow(0 1px 0 rgba(233,196,106,.08));
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero-reimagined h1.nx-masked-heading .nx-mask-word,
+  .hero-reimagined h1.nx-masked-heading .nx-mask-accent {
+    animation:none!important;
+    background-position:50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,0 0!important;
+  }
+}
