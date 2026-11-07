@@ -705,3 +705,27 @@ document.addEventListener("DOMContentLoaded", function () {
         panel.classList.add("nx-glass-surface");
     });
 });
+
+
+/* Active section state for the fixed icon rail. */
+document.addEventListener("DOMContentLoaded", function () {
+    const railLinks = Array.from(document.querySelectorAll(".nx-rail-link"));
+    const sections = railLinks
+        .map(link => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
+    if (!railLinks.length || !("IntersectionObserver" in window)) return;
+
+    const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            railLinks.forEach(link => {
+                const active = link.getAttribute("href") === "#" + entry.target.id;
+                link.classList.toggle("is-active", active);
+                if (active) link.setAttribute("aria-current", "location");
+                else link.removeAttribute("aria-current");
+            });
+        });
+    }, { rootMargin: "-35% 0px -50% 0px", threshold: 0 });
+
+    sections.forEach(section => sectionObserver.observe(section));
+});
