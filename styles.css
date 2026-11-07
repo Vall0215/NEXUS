@@ -5501,3 +5501,52 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
   .nx-marquee-track { animation:none!important; }
   .nx-rail-link,.nx-rail-link span { transition:none!important; }
 }
+
+
+/* React Bits-inspired Masked Heading: word-by-word mask reveal with drifting gold mesh. */
+.nx-masked-heading {
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  gap:0!important;overflow:visible!important;
+}
+.nx-masked-heading .nx-mask-line {
+  display:block;overflow:hidden;padding:0 .035em .09em 0;
+  margin:0;line-height:1.04;
+}
+.nx-masked-heading .nx-mask-word {
+  display:inline-block;opacity:0;
+  clip-path:inset(0 0 100% 0);
+  transform:translate3d(0,.32em,0);
+  animation:nx-masked-word-reveal 1.05s cubic-bezier(.2,.75,.2,1) forwards;
+  animation-delay:.12s;
+}
+.nx-masked-heading .nx-mask-word-2 { animation-delay:.32s; }
+.nx-masked-heading .nx-mask-accent {
+  color:transparent!important;
+  background:
+    radial-gradient(ellipse at 20% 30%,#fff0bd 0%,transparent 35%),
+    linear-gradient(105deg,#f5dfa0 5%,#d6a94f 42%,#f5dfa0 70%,#a97924 100%);
+  background-size:180% 180%,220% 100%;
+  background-position:0 0,0% 50%;
+  background-clip:text!important;-webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+  animation:nx-masked-word-reveal 1.05s cubic-bezier(.2,.75,.2,1) forwards,
+            nx-mask-gold-drift 7s ease-in-out 1.2s infinite alternate;
+  animation-delay:.52s,1.2s;
+}
+@keyframes nx-masked-word-reveal {
+  0% { opacity:0;clip-path:inset(0 0 100% 0);transform:translate3d(0,.32em,0); }
+  100% { opacity:1;clip-path:inset(-.08em - .04em -.12em 0);transform:translate3d(0,0,0); }
+}
+@keyframes nx-mask-gold-drift {
+  from { background-position:0 0,0% 50%; }
+  to { background-position:100% 100%,100% 50%; }
+}
+@media(max-width:600px) {
+  .nx-masked-heading .nx-mask-line { line-height:1.07; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .nx-masked-heading .nx-mask-word,
+  .nx-masked-heading .nx-mask-accent {
+    animation:none!important;opacity:1!important;clip-path:none!important;transform:none!important;
+  }
+}
