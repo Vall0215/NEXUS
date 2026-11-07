@@ -27,7 +27,7 @@
 
     <link
         rel="stylesheet"
-        href="styles.css?v=saas-pricing-badge-fix-2"
+        href="styles.css?v=rail-marquee-1"
     >
 
 </head>
@@ -35,6 +35,24 @@
 
 <body>
 
+    <nav class="nx-section-rail" aria-label="Navegación por secciones">
+        <span class="nx-rail-track" aria-hidden="true"></span>
+        <a class="nx-rail-link is-active" href="#inicio" aria-label="Inicio" title="Inicio">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Inicio</span>
+        </a>
+        <a class="nx-rail-link" href="#mapa" aria-label="Mapa energético" title="Mapa energético">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Mapa energético</span>
+        </a>
+        <a class="nx-rail-link" href="#simulador" aria-label="Simulador" title="Simulador">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-7"/><path d="M16 6h3v3"/></svg><span>Simulador</span>
+        </a>
+        <a class="nx-rail-link" href="#copiloto" aria-label="Copiloto IA" title="Copiloto IA">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg><span>Copiloto IA</span>
+        </a>
+        <a class="nx-rail-link" href="#planes" aria-label="Planes" title="Planes">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="18" cy="17" r="2"/></svg><span>Planes</span>
+        </a>
+    </nav>
 
     <header class="navbar">
 
@@ -51,19 +69,7 @@
         </div>
 
 
-        <nav class="nx-branch-nav" aria-label="Navegación principal">
-            <button class="nx-branch-toggle" type="button" aria-expanded="false" aria-controls="nx-branch-panel">
-                Explorar secciones <span class="nx-branch-chevron">⌄</span>
-            </button>
-            <div class="nx-branch-panel" id="nx-branch-panel">
-                <span class="nx-branch-trunk" aria-hidden="true"></span>
-                <a href="#inicio"><i>01</i><span>Inicio</span></a>
-                <a href="#mapa"><i>02</i><span>Mapa energético</span></a>
-                <a href="#simulador"><i>03</i><span>Simulador</span></a>
-                <a href="#copiloto"><i>04</i><span>Copiloto IA</span></a>
-                <a href="#planes"><i>05</i><span>Planes</span></a>
-            </div>
-        </nav>
+
 
 
         <button
@@ -100,10 +106,7 @@
 
             <div class="hero-art nexus-scene nx-energy-core" aria-label="Visualización tridimensional de un núcleo de energía solar con anillos orbitales">
                 <div class="scene-halo"></div>
-                <div class="core-kicker"><span class="scene-dot"></span> NEXUS · ENERGY CORE</div>
-                <div class="core-orbit-label core-label-one">SOLAR INTELLIGENCE <i></i></div>
-                <div class="core-orbit-label core-label-two"><i></i> ENERGY IN MOTION</div>
-                <div class="core-caption"><span>ENERGÍA · DATOS · FUTURO</span><b>NX — 01</b></div>
+
             </div>
 
             <div class="hero-bottomline">
@@ -111,6 +114,29 @@
                 <span class="scroll-cue">DESLIZA PARA EXPLORAR <b>↓</b></span>
             </div>
         </section>
+
+        <div class="nx-energy-marquee" aria-label="NEXUS: energía, datos e inteligencia">
+            <div class="nx-marquee-track">
+                <div class="nx-marquee-group">
+                    <span class="nx-marquee-item nx-marquee-brand">NEXUS <i>✳</i></span>
+                    <span class="nx-marquee-item">ENERGÍA <b>✦</b></span>
+                    <span class="nx-marquee-item">DATOS <b>✳</b></span>
+                    <span class="nx-marquee-item">FUTURO <b>✦</b></span>
+                    <span class="nx-marquee-item">ENERGY CORE <b>✳</b></span>
+                    <span class="nx-marquee-item">SOLAR INTELLIGENCE <b>✦</b></span>
+                    <span class="nx-marquee-item">ENERGY IN MOTION <b>✳</b></span>
+                </div>
+                <div class="nx-marquee-group" aria-hidden="true">
+                    <span class="nx-marquee-item nx-marquee-brand">NEXUS <i>✳</i></span>
+                    <span class="nx-marquee-item">ENERGÍA <b>✦</b></span>
+                    <span class="nx-marquee-item">DATOS <b>✳</b></span>
+                    <span class="nx-marquee-item">FUTURO <b>✦</b></span>
+                    <span class="nx-marquee-item">ENERGY CORE <b>✳</b></span>
+                    <span class="nx-marquee-item">SOLAR INTELLIGENCE <b>✦</b></span>
+                    <span class="nx-marquee-item">ENERGY IN MOTION <b>✳</b></span>
+                </div>
+            </div>
+        </div>
 
         <div class="nx-section-transition" aria-hidden="true"><span></span><i></i></div>
 
