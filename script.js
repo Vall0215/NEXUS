@@ -750,3 +750,46 @@ document.addEventListener("DOMContentLoaded", function () {
         reveal();
     }
 })();
+
+
+// Pointer-following spotlight and gentle parallax inside the masked metallic hero title.
+(function initMaskedHeadingSpotlight() {
+    const setup = () => {
+        const heading = document.querySelector(".nx-masked-heading");
+        if (!heading || heading.dataset.spotlightReady) return;
+        heading.dataset.spotlightReady = "true";
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        let frame = 0;
+        let targetX = 50, targetY = 50;
+        let currentX = 50, currentY = 50;
+        let active = false;
+
+        const paint = () => {
+            frame = 0;
+            currentX += (targetX - currentX) * 0.16;
+            currentY += (targetY - currentY) * 0.16;
+            heading.style.setProperty("--mh-x", currentX.toFixed(2) + "%");
+            heading.style.setProperty("--mh-y", currentY.toFixed(2) + "%");
+            if (Math.abs(targetX-currentX)>.15 || Math.abs(targetY-currentY)>.15) {
+                frame = requestAnimationFrame(paint);
+            }
+        };
+        heading.addEventListener("pointermove", event => {
+            const rect = heading.getBoundingClientRect();
+            targetX = Math.max(0,Math.min(100,((event.clientX-rect.left)/rect.width)*100));
+            targetY = Math.max(0,Math.min(100,((event.clientY-rect.top)/rect.height)*100));
+            if (!active) { active = true; heading.classList.add("nx-mask-pointer"); }
+            if (!frame) frame = requestAnimationFrame(paint);
+        });
+        heading.addEventListener("pointerleave", () => {
+            active = false;
+            heading.classList.remove("nx-mask-pointer");
+            targetX = 50; targetY = 50;
+            if (!frame) frame = requestAnimationFrame(paint);
+        });
+    };
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", setup, { once:true });
+    } else setup();
+})();
