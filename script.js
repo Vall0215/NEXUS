@@ -729,3 +729,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     sections.forEach(section => sectionObserver.observe(section));
 });
+
+
+// Trigger the masked hero title after its initial hidden state has painted.
+(function initNexusMaskedHeading() {
+    const reveal = () => {
+        const heading = document.querySelector(".nx-masked-heading");
+        if (!heading) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            heading.classList.add("nx-mask-ready");
+            return;
+        }
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+            heading.classList.add("nx-mask-ready");
+        }));
+    };
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", reveal, { once: true });
+    } else {
+        reveal();
+    }
+})();
