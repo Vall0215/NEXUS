@@ -5550,3 +5550,48 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
     animation:none!important;opacity:1!important;clip-path:none!important;transform:none!important;
   }
 }
+
+
+/* Hard override for the masked-heading effect (avoids legacy hero h1 animation rules). */
+.hero-reimagined h1.nx-masked-heading {
+  display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+  overflow:visible!important;gap:0!important;
+}
+.hero-reimagined h1.nx-masked-heading .nx-mask-line {
+  display:block!important;overflow:hidden!important;
+  padding:0 .05em .10em 0!important;margin:0!important;
+  line-height:1.04!important;
+}
+.hero-reimagined h1.nx-masked-heading .nx-mask-word {
+  display:inline-block!important;opacity:0!important;
+  clip-path:inset(0 0 105% 0)!important;
+  transform:translate3d(0,.28em,0)!important;
+  transition:clip-path 1.15s cubic-bezier(.2,.75,.2,1),transform 1.15s cubic-bezier(.2,.75,.2,1),opacity .2s ease!important;
+  animation:none!important;
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-word {
+  opacity:1!important;clip-path:inset(-.08em -.04em -.14em 0)!important;
+  transform:translate3d(0,0,0)!important;
+}
+.hero-reimagined h1.nx-masked-heading .nx-mask-word-2 { transition-delay:.18s!important; }
+.hero-reimagined h1.nx-masked-heading .nx-mask-accent { transition-delay:.36s!important; }
+.hero-reimagined h1.nx-masked-heading .nx-mask-accent {
+  color:transparent!important;
+  background:linear-gradient(105deg,#fff0bd 0%,#e9c46a 28%,#bd8428 52%,#f5dfa0 72%,#c18a2d 100%)!important;
+  background-size:220% 100%!important;background-position:0% 50%!important;
+  background-clip:text!important;-webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-accent {
+  animation:nx-mask-gold-drift 6s ease-in-out 1.5s infinite alternate!important;
+}
+@keyframes nx-mask-gold-drift {
+  from { background-position:0% 50%; }
+  to { background-position:100% 50%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero-reimagined h1.nx-masked-heading .nx-mask-word {
+    opacity:1!important;clip-path:none!important;transform:none!important;transition:none!important;
+  }
+  .hero-reimagined h1.nx-masked-heading .nx-mask-accent { animation:none!important; }
+}
