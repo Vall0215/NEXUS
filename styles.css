@@ -4979,3 +4979,94 @@ html body #simulador .controls button.primary-button:hover {
 @media (prefers-reduced-motion:reduce) {
   .nx-branch-panel,.nx-branch-toggle,.nx-branch-panel a,.nx-tech-wordmark text,.nx-glass-surface::after { transition:none !important; }
 }
+
+
+/* HERO VISUAL REDESIGN — orbital energy field + compact glass data chips */
+.hero-reimagined {
+  background:
+    radial-gradient(ellipse at 76% 48%,rgba(169,121,36,.18),transparent 35%),
+    radial-gradient(ellipse at 52% 110%,rgba(233,196,106,.07),transparent 42%),
+    linear-gradient(118deg,#100f0c 0%,#17140e 52%,#0d0c0a 100%) !important;
+}
+.hero-reimagined .hero-backdrop {
+  background:
+    radial-gradient(ellipse at 72% 46%,rgba(233,196,106,.12),transparent 38%),
+    radial-gradient(ellipse at 88% 18%,rgba(169,121,36,.09),transparent 28%),
+    linear-gradient(115deg,rgba(17,16,13,.96),rgba(24,20,13,.72) 62%,rgba(12,11,9,.94)) !important;
+}
+.hero-reimagined .hero-backdrop::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  opacity:.28;
+  background-image:linear-gradient(rgba(233,196,106,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(233,196,106,.055) 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:radial-gradient(ellipse at 72% 48%,#000 0%,transparent 72%);
+}
+.nexus-scene {
+  min-height:650px!important; isolation:isolate;
+  background:
+    radial-gradient(ellipse at 50% 54%,rgba(233,196,106,.12),transparent 48%),
+    radial-gradient(ellipse at 50% 90%,rgba(169,121,36,.10),transparent 42%) !important;
+}
+.nexus-scene::before {
+  content:""; position:absolute; z-index:0; inset:8% 5%;
+  border:1px solid rgba(233,196,106,.10); border-radius:50%;
+  transform:rotate(-17deg) scaleY(.48);
+  box-shadow:0 0 65px rgba(233,196,106,.055),inset 0 0 45px rgba(233,196,106,.035);
+  pointer-events:none; background:none!important; filter:none!important;
+}
+.nexus-scene::after {
+  content:""; position:absolute; z-index:0; inset:13% 10%;
+  border:1px dashed rgba(233,196,106,.15); border-radius:50%;
+  transform:rotate(22deg) scaleY(.56); pointer-events:none;
+  background:none!important; box-shadow:none!important;
+}
+.scene-halo {
+  width:78%!important;height:70%!important;left:11%!important;top:18%!important;
+  background:rgba(201,151,55,.22)!important;filter:blur(82px)!important;
+}
+.nexus-three-canvas { z-index:1!important; }
+.energy-city { z-index:1; filter:drop-shadow(0 30px 42px rgba(0,0,0,.48))!important; }
+.scene-label-top {
+  top:3%!important;right:8%!important;z-index:5;
+  color:#e4c987!important;font-size:9px!important;letter-spacing:.17em!important;
+}
+.scene-dot { background:#e9c46a!important;box-shadow:0 0 12px rgba(233,196,106,.8)!important; }
+.scene-float {
+  z-index:5!important; width:auto!important; min-width:0!important; max-width:205px!important;
+  min-height:0!important; padding:10px 13px!important; gap:10px!important;
+  border:1px solid rgba(233,196,106,.24)!important; border-radius:13px!important;
+  background:linear-gradient(135deg,rgba(37,31,21,.82),rgba(19,17,13,.78))!important;
+  box-shadow:0 14px 38px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,248,224,.09)!important;
+  backdrop-filter:blur(18px) saturate(145%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(145%)!important;
+  transform:none!important;
+}
+.scene-float small { color:#b8aa8d!important;font:400 8px "IBM Plex Mono",monospace!important;letter-spacing:.13em!important;margin-bottom:3px!important; }
+.scene-float strong { color:#f4efe3!important;font:600 11px Inter,sans-serif!important;line-height:1.35!important; }
+.scene-float em { color:#bdb5a3!important;font:400 9px Inter,sans-serif!important; }
+.float-icon { width:29px!important;height:29px!important;flex:0 0 29px;border-radius:9px!important;background:rgba(233,196,106,.13)!important;color:#e9c46a!important;font-size:17px!important; }
+.float-icon.gold,.float-icon.blue { color:#e9c46a!important;background:rgba(233,196,106,.13)!important; }
+.float-live { color:#e9c46a!important; }
+.scene-location { top:15%!important;left:0!important; }
+.scene-solar { top:55%!important;right:0!important;left:auto!important; }
+.scene-ai { left:4%!important;bottom:11%!important; }
+.scene-caption {
+  z-index:5;bottom:3%!important;right:7%!important;
+  color:#b8aa8d!important;font:400 8px "IBM Plex Mono",monospace!important;
+}
+.scene-caption b { color:#e9c46a!important; }
+@media(max-width:900px) {
+  .nexus-scene { min-height:560px!important; }
+  .scene-location { top:9%!important;left:1%!important; }
+  .scene-solar { top:57%!important;right:1%!important; }
+  .scene-ai { left:1%!important;bottom:9%!important; }
+}
+@media(max-width:600px) {
+  .nexus-scene { min-height:470px!important; }
+  .scene-float { padding:8px 10px!important;max-width:168px!important; }
+  .scene-float strong { font-size:10px!important; }
+  .scene-location { top:7%!important; }
+  .scene-solar { top:57%!important; }
+  .scene-ai { bottom:8%!important; }
+  .scene-caption { font-size:7px!important; }
+}
