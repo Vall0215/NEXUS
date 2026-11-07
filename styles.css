@@ -4760,3 +4760,21 @@ html, body { background: var(--nx-abyss) !important; color: var(--nx-mist) !impo
 footer .logo-icon { background: #3a2d16 !important; }
 .modal-overlay { background: rgba(8,7,5,.86) !important; }
 .checkout-label { color: #d4bd83 !important; }
+
+
+/* Simulator action button — match the antique-gold NEXUS palette */
+#simulador .controls .primary-button,
+#simulador button.primary-button {
+  background: linear-gradient(105deg, #a97924 0%, #e9c46a 52%, #f5dfa0 100%) !important;
+  color: #171208 !important;
+  -webkit-text-fill-color: #171208 !important;
+  border: 1px solid rgba(245,223,160,.38) !important;
+  box-shadow: none !important;
+}
+#simulador .controls .primary-button:hover,
+#simulador button.primary-button:hover {
+  background: linear-gradient(105deg, #bd8c32 0%, #f0cf79 52%, #fae8b5 100%) !important;
+  color: #171208 !important;
+  -webkit-text-fill-color: #171208 !important;
+  filter: brightness(1.03) !important;
+}
