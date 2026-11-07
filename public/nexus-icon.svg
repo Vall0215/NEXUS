@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="gold" x1="18" y1="12" x2="108" y2="116" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff0c1"/>
+      <stop offset=".28" stop-color="#e9c46a"/>
+      <stop offset=".62" stop-color="#b77b28"/>
+      <stop offset="1" stop-color="#f5dfa0"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="14" y1="8" x2="114" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8e5ae"/>
+      <stop offset=".45" stop-color="#a97924"/>
+      <stop offset=".72" stop-color="#ffe6a0"/>
+      <stop offset="1" stop-color="#8f5d1c"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="59" fill="#090806" stroke="url(#rim)" stroke-width="3.5"/>
+  <circle cx="64" cy="64" r="54.5" fill="none" stroke="#e9c46a" stroke-opacity=".16" stroke-width=".8"/>
+  <path d="M39 91V37h9.2l31.5 37V37H89v54h-9L48.3 53.5V91Z" fill="url(#gold)"/>
+  <path d="M20 77C35 99 82 103 108 63c-18 18-48 27-76 17-5-1-9-2-12-3Z" fill="none" stroke="url(#gold)" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M95 30 98 21l3 9 9 3-9 3-3 9-3-9-9-3Z" fill="url(#gold)"/>
+</svg>
