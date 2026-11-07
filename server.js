@@ -207,13 +207,13 @@ app.post("/api/copilot", async (req, res) => {
 });
 
 // Serve the existing frontend from the same application.
-app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/")) {
     return res.status(404).json({ error: "Ruta API no encontrada." });
   }
-  res.sendFile(path.join(__dirname, "index.html"), (error) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"), (error) => {
     if (error) next(error);
   });
 });
