@@ -27,14 +27,14 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   camera.position.set(8, 7, 11);
   camera.lookAt(0, 1.2, 0);
 
-  scene.add(new THREE.HemisphereLight(0xbac8ff, 0x11121b, 2.1));
-  const key = new THREE.DirectionalLight(0xffffff, 3.2);
+  scene.add(new THREE.HemisphereLight(0xf5dfa0, 0x17130b, 2.1));
+  const key = new THREE.DirectionalLight(0xffe5a3, 3.2);
   key.position.set(5, 9, 7);
   scene.add(key);
-  const violet = new THREE.PointLight(0x847dff, 32, 16);
+  const violet = new THREE.PointLight(0xd6a94f, 32, 16);
   violet.position.set(-4, 3, -2);
   scene.add(violet);
-  const cyan = new THREE.PointLight(0x00b3dd, 22, 14);
+  const cyan = new THREE.PointLight(0xe9c46a, 22, 14);
   cyan.position.set(4, 2, 4);
   scene.add(cyan);
 
@@ -43,17 +43,17 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
 
   const mat = (color, roughness = 0.58, metalness = 0.12) =>
     new THREE.MeshStandardMaterial({ color, roughness, metalness });
-  const groundMat = mat(0x202333, 0.82, 0.18);
-  const buildingMats = [0x34384d, 0x292e42, 0x42465d, 0x222b3c].map(c => mat(c, 0.48, 0.25));
+  const groundMat = mat(0x211b11, 0.82, 0.18);
+  const buildingMats = [0x51432a, 0x40351f, 0x66532e, 0x302719].map(c => mat(c, 0.48, 0.25));
   const glassMat = new THREE.MeshStandardMaterial({
-    color: 0x6677c9, emissive: 0x263b91, emissiveIntensity: 0.38,
+    color: 0xc49a43, emissive: 0x684b19, emissiveIntensity: 0.38,
     metalness: 0.55, roughness: 0.24
   });
   const solarMat = new THREE.MeshStandardMaterial({
-    color: 0x283e72, emissive: 0x182a60, emissiveIntensity: 0.32,
+    color: 0x45351a, emissive: 0x8b6723, emissiveIntensity: 0.32,
     metalness: 0.72, roughness: 0.25
   });
-  const frameMat = mat(0x9ca9d8, 0.35, 0.72);
+  const frameMat = mat(0xc7a75e, 0.35, 0.72);
 
   const ground = new THREE.Mesh(new THREE.CylinderGeometry(5.3, 5.3, 0.28, 8), groundMat);
   ground.position.y = -0.18;
@@ -62,7 +62,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
 
   const platform = new THREE.Mesh(
     new THREE.CylinderGeometry(4.8, 5.1, 0.12, 8),
-    mat(0x30364c, 0.52, 0.42)
+    mat(0x382c17, 0.52, 0.42)
   );
   platform.position.y = 0.02;
   platform.rotation.y = Math.PI / 8;
@@ -119,13 +119,13 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   const battery = new THREE.Group();
   const batteryBody = new THREE.Mesh(
     new THREE.BoxGeometry(0.75, 1.05, 0.55),
-    mat(0x363c53, 0.38, 0.48)
+    mat(0x44371f, 0.38, 0.48)
   );
   batteryBody.position.y = 0.62;
   battery.add(batteryBody);
   const batteryLight = new THREE.Mesh(
     new THREE.BoxGeometry(0.42, 0.055, 0.035),
-    new THREE.MeshBasicMaterial({ color: 0x00d4ed })
+    new THREE.MeshBasicMaterial({ color: 0xe9c46a })
   );
   batteryLight.position.set(0, 0.82, 0.29);
   battery.add(batteryLight);
@@ -133,7 +133,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   city.add(battery);
 
   // Fine orbit rings and energy particles.
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0x777dff, transparent: true, opacity: 0.42 });
+  const ringMat = new THREE.MeshBasicMaterial({ color: 0xe9c46a, transparent: true, opacity: 0.42 });
   const ring = new THREE.Mesh(new THREE.TorusGeometry(4.25, 0.012, 8, 140), ringMat);
   ring.rotation.x = Math.PI / 2.35;
   ring.position.y = 0.22;
@@ -149,7 +149,7 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   particleGeometry.setAttribute("position", new THREE.Float32BufferAttribute(particlePositions, 3));
   const particles = new THREE.Points(
     particleGeometry,
-    new THREE.PointsMaterial({ color: 0x9aa6ff, size: 0.035, transparent: true, opacity: 0.7 })
+    new THREE.PointsMaterial({ color: 0xf5dfa0, size: 0.035, transparent: true, opacity: 0.7 })
   );
   city.add(particles);
 
