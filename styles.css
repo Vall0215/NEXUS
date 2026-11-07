@@ -4857,3 +4857,125 @@ html body #simulador .controls button.primary-button:hover {
   .hero-reimagined::before, .hero-reimagined h1,
   .hero-description, .hero-buttons { animation: none !important; }
 }
+
+
+/* NEXUS — React Bits-inspired Glass Surface, Branched Menu and Tech Text */
+:root {
+  --nx-glass-bg: rgba(35, 30, 21, .54);
+  --nx-glass-border: rgba(233, 196, 106, .28);
+  --nx-glass-highlight: rgba(255, 248, 224, .13);
+  --nx-gold: #e9c46a;
+  --nx-gold-deep: #a97924;
+}
+.nx-tech-wordmark { display:inline-flex; width:112px; vertical-align:middle; }
+.nx-tech-wordmark svg { width:100%; height:auto; overflow:visible; }
+.nx-tech-wordmark text {
+  font-family: Inter, sans-serif; font-size:25px; font-weight:700;
+  letter-spacing:3px; fill:#f4efe3; stroke:#f4efe3; stroke-width:.45;
+  stroke-dasharray:0 1; stroke-dashoffset:0;
+  transition:fill .35s ease,stroke-dasharray .55s ease,stroke-dashoffset .65s ease,filter .35s ease;
+}
+.nx-tech-wordmark:hover text, .nx-tech-wordmark:focus-within text {
+  fill:transparent; stroke:#e9c46a; stroke-width:1.15;
+  stroke-dasharray:2.2 2.8; stroke-dashoffset:22;
+  filter:drop-shadow(0 0 5px rgba(233,196,106,.55));
+}
+.nx-branch-nav { position:relative; display:flex; align-items:center; }
+.nx-branch-toggle {
+  display:flex; align-items:center; gap:12px; padding:11px 16px;
+  border:1px solid rgba(233,196,106,.28); border-radius:999px;
+  background:rgba(32,27,19,.62); color:#f4efe3; cursor:pointer;
+  font:600 12px Inter,sans-serif; letter-spacing:.04em;
+  backdrop-filter:blur(18px) saturate(155%); -webkit-backdrop-filter:blur(18px) saturate(155%);
+  transition:border-color .25s ease,background .25s ease,box-shadow .25s ease;
+}
+.nx-branch-toggle:hover,.nx-branch-nav.is-open .nx-branch-toggle {
+  border-color:rgba(233,196,106,.65); background:rgba(65,49,23,.78);
+  box-shadow:0 0 24px rgba(169,121,36,.13);
+}
+.nx-branch-chevron { color:#e9c46a; transition:transform .3s ease; }
+.nx-branch-nav.is-open .nx-branch-chevron { transform:rotate(180deg); }
+.nx-branch-panel {
+  position:absolute; top:calc(100% + 15px); left:50%; z-index:1200;
+  width:248px; padding:13px 15px 13px 20px; border-radius:18px;
+  border:1px solid rgba(233,196,106,.25);
+  background:linear-gradient(145deg,rgba(38,32,23,.91),rgba(17,16,13,.88));
+  box-shadow:0 22px 65px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.09);
+  backdrop-filter:blur(24px) saturate(165%); -webkit-backdrop-filter:blur(24px) saturate(165%);
+  opacity:0; visibility:hidden; pointer-events:none;
+  transform:translate(-50%,-8px) scale(.97); transform-origin:top center;
+  transition:opacity .24s ease,transform .28s cubic-bezier(.2,.8,.2,1),visibility .24s;
+}
+.nx-branch-nav.is-open .nx-branch-panel {
+  opacity:1; visibility:visible; pointer-events:auto; transform:translate(-50%,0) scale(1);
+}
+.nx-branch-panel::before {
+  content:""; position:absolute; top:-7px; left:50%; width:12px; height:12px;
+  transform:translateX(-50%) rotate(45deg); background:#282219;
+  border-left:1px solid rgba(233,196,106,.25); border-top:1px solid rgba(233,196,106,.25);
+}
+.nx-branch-trunk {
+  position:absolute; left:34px; top:30px; bottom:30px; width:1px;
+  background:linear-gradient(transparent,rgba(233,196,106,.65) 12%,rgba(233,196,106,.38) 88%,transparent);
+}
+.nx-branch-panel a {
+  position:relative; display:flex; align-items:center; gap:15px;
+  min-height:43px; padding:7px 10px; border-radius:10px;
+  color:#d8d0bd; text-decoration:none; font-size:12px; letter-spacing:.02em;
+  transition:color .2s ease,background .2s ease,transform .2s ease;
+}
+.nx-branch-panel a::before {
+  content:""; position:absolute; left:14px; top:50%; width:21px; height:1px;
+  background:rgba(233,196,106,.42); transition:width .22s ease,background .22s ease;
+}
+.nx-branch-panel a i {
+  position:relative; z-index:1; display:grid; place-items:center; width:14px; height:14px;
+  border:1px solid rgba(233,196,106,.55); border-radius:50%;
+  background:#211c14; color:#e9c46a; font:9px "IBM Plex Mono",monospace;
+}
+.nx-branch-panel a span { padding-left:8px; }
+.nx-branch-panel a:hover,.nx-branch-panel a:focus-visible {
+  color:#fff4d6; background:rgba(233,196,106,.09); transform:translateX(4px);
+}
+.nx-branch-panel a:hover::before { width:28px; background:#e9c46a; }
+.nx-glass-surface {
+  position:relative; isolation:isolate; overflow:hidden;
+  background:linear-gradient(135deg,rgba(255,250,235,.085),rgba(169,121,36,.045) 48%,rgba(15,13,10,.38)) !important;
+  border:1px solid var(--nx-glass-border) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(233,196,106,.07),0 18px 55px rgba(0,0,0,.22) !important;
+  -webkit-backdrop-filter:blur(22px) saturate(155%);
+  backdrop-filter:blur(22px) saturate(155%);
+}
+.nx-glass-surface::before {
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  border-radius:inherit; padding:1px;
+  background:linear-gradient(135deg,rgba(255,248,224,.3),transparent 30%,rgba(233,196,106,.16) 72%,transparent);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+}
+.nx-glass-surface::after {
+  content:""; position:absolute; z-index:0; pointer-events:none;
+  top:-70%; left:-55%; width:55%; height:240%; transform:rotate(25deg);
+  background:linear-gradient(90deg,transparent,rgba(255,250,230,.055),transparent);
+  transition:transform .8s ease;
+}
+.nx-glass-surface:hover::after { transform:translateX(280%) rotate(25deg); }
+.nx-glass-surface > * { position:relative; z-index:1; }
+.controls,.results,.result-card,.copilot,.pricing-card {
+  border-color:rgba(233,196,106,.23);
+}
+.controls,.results,.copilot,.pricing-card {
+  background-color:rgba(31,27,20,.62) !important;
+  -webkit-backdrop-filter:blur(18px) saturate(145%);
+  backdrop-filter:blur(18px) saturate(145%);
+}
+@media (max-width:760px) {
+  .navbar { gap:10px; padding-left:16px; padding-right:16px; }
+  .nx-branch-toggle { padding:9px 11px; font-size:11px; }
+  .nx-branch-panel { left:auto; right:-65px; transform:translate(0,-8px) scale(.97); }
+  .nx-branch-nav.is-open .nx-branch-panel { transform:translate(0,0) scale(1); }
+  .nx-tech-wordmark { width:88px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .nx-branch-panel,.nx-branch-toggle,.nx-branch-panel a,.nx-tech-wordmark text,.nx-glass-surface::after { transition:none !important; }
+}
