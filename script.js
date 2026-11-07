@@ -654,3 +654,54 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+/* Branched navigation interaction and Tech Text wordmark */
+document.addEventListener("DOMContentLoaded", function () {
+    const branchNav = document.querySelector(".nx-branch-nav");
+    const branchToggle = document.querySelector(".nx-branch-toggle");
+    if (branchNav && branchToggle) {
+        const closeMenu = function () {
+            branchNav.classList.remove("is-open");
+            branchToggle.setAttribute("aria-expanded", "false");
+        };
+        branchToggle.addEventListener("click", function () {
+            const opening = !branchNav.classList.contains("is-open");
+            branchNav.classList.toggle("is-open", opening);
+            branchToggle.setAttribute("aria-expanded", String(opening));
+        });
+        branchNav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", closeMenu);
+        });
+        document.addEventListener("pointerdown", function (event) {
+            if (!branchNav.contains(event.target)) closeMenu();
+        });
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeMenu();
+                branchToggle.focus();
+            }
+        });
+    }
+
+    const techWordmark = document.querySelector(".nx-tech-wordmark");
+    if (techWordmark) {
+        techWordmark.setAttribute("tabindex", "0");
+        techWordmark.addEventListener("pointerenter", function () {
+            techWordmark.classList.add("is-tech-active");
+        });
+        techWordmark.addEventListener("pointerleave", function () {
+            techWordmark.classList.remove("is-tech-active");
+        });
+        techWordmark.addEventListener("focus", function () {
+            techWordmark.classList.add("is-tech-active");
+        });
+        techWordmark.addEventListener("blur", function () {
+            techWordmark.classList.remove("is-tech-active");
+        });
+    }
+
+    document.querySelectorAll(".controls,.results,.result-card,.copilot,.pricing-card").forEach(function (panel) {
+        panel.classList.add("nx-glass-surface");
+    });
+});
