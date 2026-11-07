@@ -2,163 +2,169 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
 
 (() => {
   const host = document.querySelector(".nexus-scene");
-  if (!host || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!host) return;
 
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
   } catch (error) {
-    console.warn("NEXUS 3D scene unavailable; keeping the static illustration.", error);
+    console.warn("NEXUS energy core unavailable; CSS atmosphere remains visible.", error);
+    host.classList.add("nx-webgl-fallback");
     return;
   }
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.7));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
   renderer.setSize(host.clientWidth, host.clientHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.25;
+  renderer.toneMappingExposure = 1.32;
   renderer.domElement.className = "nexus-three-canvas";
   renderer.domElement.setAttribute("aria-hidden", "true");
   host.prepend(renderer.domElement);
   host.classList.add("nx-webgl-ready");
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(34, host.clientWidth / host.clientHeight, 0.1, 100);
-  camera.position.set(8, 7, 11);
-  camera.lookAt(0, 1.2, 0);
+  const camera = new THREE.PerspectiveCamera(38, host.clientWidth / host.clientHeight, .1, 100);
+  camera.position.set(0, 1.2, 10.8);
+  camera.lookAt(0, 0, 0);
 
-  scene.add(new THREE.HemisphereLight(0xf5dfa0, 0x17130b, 2.1));
-  const key = new THREE.DirectionalLight(0xffe5a3, 3.2);
-  key.position.set(5, 9, 7);
+  scene.add(new THREE.HemisphereLight(0xffe8b5, 0x171008, 2.2));
+  const key = new THREE.DirectionalLight(0xffe6a3, 3.5);
+  key.position.set(4, 6, 7);
   scene.add(key);
-  const violet = new THREE.PointLight(0xd6a94f, 32, 16);
-  violet.position.set(-4, 3, -2);
-  scene.add(violet);
-  const cyan = new THREE.PointLight(0xe9c46a, 22, 14);
-  cyan.position.set(4, 2, 4);
-  scene.add(cyan);
+  const rim = new THREE.PointLight(0xd99b35, 42, 18);
+  rim.position.set(-4, 1.8, -2);
+  scene.add(rim);
+  const warm = new THREE.PointLight(0xffd77a, 26, 14);
+  warm.position.set(4, -2, 4);
+  scene.add(warm);
 
-  const city = new THREE.Group();
-  scene.add(city);
+  const core = new THREE.Group();
+  scene.add(core);
 
-  const mat = (color, roughness = 0.58, metalness = 0.12) =>
-    new THREE.MeshStandardMaterial({ color, roughness, metalness });
-  const groundMat = mat(0x211b11, 0.82, 0.18);
-  const buildingMats = [0x51432a, 0x40351f, 0x66532e, 0x302719].map(c => mat(c, 0.48, 0.25));
-  const glassMat = new THREE.MeshStandardMaterial({
-    color: 0xc49a43, emissive: 0x684b19, emissiveIntensity: 0.38,
-    metalness: 0.55, roughness: 0.24
-  });
-  const solarMat = new THREE.MeshStandardMaterial({
-    color: 0x45351a, emissive: 0x8b6723, emissiveIntensity: 0.32,
-    metalness: 0.72, roughness: 0.25
-  });
-  const frameMat = mat(0xc7a75e, 0.35, 0.72);
-
-  const ground = new THREE.Mesh(new THREE.CylinderGeometry(5.3, 5.3, 0.28, 8), groundMat);
-  ground.position.y = -0.18;
-  ground.rotation.y = Math.PI / 8;
-  city.add(ground);
-
-  const platform = new THREE.Mesh(
-    new THREE.CylinderGeometry(4.8, 5.1, 0.12, 8),
-    mat(0x382c17, 0.52, 0.42)
+  const sphere = new THREE.Mesh(
+    new THREE.SphereGeometry(1.72, 96, 96),
+    new THREE.MeshPhysicalMaterial({
+      color: 0x9d7029, metalness: .78, roughness: .23,
+      clearcoat: 1, clearcoatRoughness: .16,
+      emissive: 0x4c2e08, emissiveIntensity: .32
+    })
   );
-  platform.position.y = 0.02;
-  platform.rotation.y = Math.PI / 8;
-  city.add(platform);
+  core.add(sphere);
 
-  function addBuilding(x, z, width, depth, height, index) {
-    const group = new THREE.Group();
-    const body = new THREE.Mesh(
-      new THREE.BoxGeometry(width, height, depth),
-      buildingMats[index % buildingMats.length]
+  const innerGlow = new THREE.Mesh(
+    new THREE.SphereGeometry(1.64, 64, 64),
+    new THREE.MeshBasicMaterial({ color: 0xf2c76b, transparent: true, opacity: .10, wireframe: true })
+  );
+  core.add(innerGlow);
+
+  const wire = new THREE.Mesh(
+    new THREE.IcosahedronGeometry(1.78, 2),
+    new THREE.MeshBasicMaterial({ color: 0xf2d18a, wireframe: true, transparent: true, opacity: .16 })
+  );
+  core.add(wire);
+
+  // Solar-cell facets arranged as a fine, curved grid over the energy sphere.
+  const cellMaterial = new THREE.MeshStandardMaterial({
+    color: 0x292219, metalness: .82, roughness: .28,
+    emissive: 0x8c5e19, emissiveIntensity: .13,
+    side: THREE.DoubleSide
+  });
+  const cellLines = new THREE.Group();
+  const radius = 1.735;
+  for (let lat = -4; lat <= 4; lat++) {
+    const phi = Math.PI / 2 + lat * .22;
+    const y = radius * Math.cos(phi);
+    const ringRadius = radius * Math.sin(phi);
+    const line = new THREE.Mesh(
+      new THREE.TorusGeometry(Math.abs(ringRadius), .009, 5, 100),
+      new THREE.MeshBasicMaterial({ color: 0xf2d18a, transparent: true, opacity: .27 })
     );
-    body.position.y = height / 2 + 0.12;
-    group.add(body);
-
-    const roof = new THREE.Mesh(new THREE.BoxGeometry(width * 1.04, 0.08, depth * 1.04), frameMat);
-    roof.position.y = height + 0.16;
-    group.add(roof);
-
-    const windowGeometry = new THREE.BoxGeometry(0.035, 0.19, depth * 0.72);
-    for (let y = 0.45; y < height - 0.1; y += 0.42) {
-      const window = new THREE.Mesh(windowGeometry, glassMat);
-      window.position.set(width / 2 + 0.022, y, 0);
-      group.add(window);
-    }
-    group.position.set(x, 0, z);
-    city.add(group);
+    line.position.y = y;
+    line.rotation.x = Math.PI / 2;
+    cellLines.add(line);
   }
-
-  addBuilding(-1.55, -0.7, 1.05, 1.0, 2.65, 0);
-  addBuilding(0.15, -1.0, 1.0, 0.95, 3.65, 1);
-  addBuilding(1.8, -0.15, 0.85, 0.9, 2.15, 2);
-  addBuilding(-2.15, 1.0, 0.78, 0.8, 1.55, 3);
-  addBuilding(0.45, 1.15, 0.9, 0.82, 1.85, 0);
-
-  // Solar array: individual dark-blue photovoltaic modules on a tilted rack.
-  const array = new THREE.Group();
-  const panelBase = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.12, 1.75), frameMat);
-  array.add(panelBase);
-  for (let row = 0; row < 3; row++) {
-    for (let col = 0; col < 5; col++) {
-      const panel = new THREE.Mesh(new THREE.BoxGeometry(0.59, 0.035, 0.52), solarMat);
-      panel.position.set(-1.22 + col * 0.61, 0.085, -0.59 + row * 0.59);
-      array.add(panel);
-      const line = new THREE.Mesh(new THREE.BoxGeometry(0.012, 0.012, 0.51), frameMat);
-      line.position.set(panel.position.x + 0.29, 0.11, panel.position.z);
-      array.add(line);
-    }
+  for (let lon = 0; lon < 12; lon++) {
+    const curve = new THREE.EllipseCurve(0, 0, radius, radius, 0, Math.PI * 2, false, 0);
+    const points = curve.getPoints(100);
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const meridian = new THREE.Line(geometry, new THREE.LineBasicMaterial({ color: 0xf2d18a, transparent: true, opacity: .18 }));
+    meridian.rotation.y = lon * Math.PI / 12;
+    cellLines.add(meridian);
   }
-  array.position.set(-0.1, 0.32, 2.65);
-  array.rotation.x = -0.28;
-  city.add(array);
+  core.add(cellLines);
 
-  // Energy storage unit.
-  const battery = new THREE.Group();
-  const batteryBody = new THREE.Mesh(
-    new THREE.BoxGeometry(0.75, 1.05, 0.55),
-    mat(0x44371f, 0.38, 0.48)
-  );
-  batteryBody.position.y = 0.62;
-  battery.add(batteryBody);
-  const batteryLight = new THREE.Mesh(
-    new THREE.BoxGeometry(0.42, 0.055, 0.035),
-    new THREE.MeshBasicMaterial({ color: 0xe9c46a })
-  );
-  batteryLight.position.set(0, 0.82, 0.29);
-  battery.add(batteryLight);
-  battery.position.set(2.7, 0.12, 1.7);
-  city.add(battery);
+  // Three orbital rings, deliberately thin and elegant rather than dashboard-like.
+  const orbitGroup = new THREE.Group();
+  scene.add(orbitGroup);
+  const orbitSpecs = [
+    { radius: 2.55, tube: .018, color: 0xf0cf79, opacity: .72, x: 1.04, y: .20, z: -.18 },
+    { radius: 3.05, tube: .009, color: 0xb88635, opacity: .55, x: .52, y: -.44, z: .36 },
+    { radius: 3.48, tube: .008, color: 0xf5dfa0, opacity: .32, x: 1.42, y: .72, z: .12 }
+  ];
+  const orbitMeshes = orbitSpecs.map(spec => {
+    const mesh = new THREE.Mesh(
+      new THREE.TorusGeometry(spec.radius, spec.tube, 8, 180),
+      new THREE.MeshBasicMaterial({ color: spec.color, transparent: true, opacity: spec.opacity })
+    );
+    mesh.rotation.set(spec.x, spec.y, spec.z);
+    orbitGroup.add(mesh);
+    return mesh;
+  });
 
-  // Fine orbit rings and energy particles.
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0xe9c46a, transparent: true, opacity: 0.42 });
-  const ring = new THREE.Mesh(new THREE.TorusGeometry(4.25, 0.012, 8, 140), ringMat);
-  ring.rotation.x = Math.PI / 2.35;
-  ring.position.y = 0.22;
-  city.add(ring);
+  // Small solar collectors mounted along the outer orbit.
+  const collectorGroup = new THREE.Group();
+  const collectorMaterial = new THREE.MeshStandardMaterial({
+    color: 0x46351b, metalness: .75, roughness: .3,
+    emissive: 0x8b5c17, emissiveIntensity: .2
+  });
+  const collectorEdge = new THREE.MeshStandardMaterial({ color: 0xe9c46a, metalness: .7, roughness: .25 });
+  for (let i = 0; i < 4; i++) {
+    const angle = i * Math.PI / 2 + .28;
+    const panel = new THREE.Group();
+    const plate = new THREE.Mesh(new THREE.BoxGeometry(.72, .045, .48), collectorMaterial);
+    panel.add(plate);
+    const frame = new THREE.Mesh(new THREE.BoxGeometry(.78, .025, .54), collectorEdge);
+    frame.position.y = -.035;
+    panel.add(frame);
+    for (let k = -1; k <= 1; k++) {
+      const seam = new THREE.Mesh(new THREE.BoxGeometry(.012, .012, .46), collectorEdge);
+      seam.position.x = k * .19;
+      panel.add(seam);
+    }
+    panel.position.set(Math.cos(angle) * 3.1, Math.sin(angle) * 1.35, Math.sin(angle * 2) * .65);
+    panel.lookAt(0, 0, 0);
+    collectorGroup.add(panel);
+  }
+  orbitGroup.add(collectorGroup);
 
-  const particlePositions = [];
-  for (let i = 0; i < 90; i++) {
+  // Fine energy particles around the orbital field.
+  const positions = [];
+  for (let i = 0; i < 220; i++) {
     const angle = Math.random() * Math.PI * 2;
-    const radius = 2.8 + Math.random() * 2.1;
-    particlePositions.push(Math.cos(angle) * radius, Math.random() * 3.5 + 0.3, Math.sin(angle) * radius);
+    const r = 2.5 + Math.random() * 2.2;
+    positions.push(Math.cos(angle) * r, (Math.random() - .5) * 4.3, Math.sin(angle) * r);
   }
   const particleGeometry = new THREE.BufferGeometry();
-  particleGeometry.setAttribute("position", new THREE.Float32BufferAttribute(particlePositions, 3));
+  particleGeometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
   const particles = new THREE.Points(
     particleGeometry,
-    new THREE.PointsMaterial({ color: 0xf5dfa0, size: 0.035, transparent: true, opacity: 0.7 })
+    new THREE.PointsMaterial({ color: 0xf5dfa0, size: .026, transparent: true, opacity: .76, sizeAttenuation: true })
   );
-  city.add(particles);
+  scene.add(particles);
+
+  const halo = new THREE.Mesh(
+    new THREE.CircleGeometry(4.4, 96),
+    new THREE.MeshBasicMaterial({ color: 0x9b671f, transparent: true, opacity: .055, side: THREE.DoubleSide })
+  );
+  halo.position.z = -2.7;
+  scene.add(halo);
 
   let pointerX = 0, pointerY = 0, targetX = 0, targetY = 0;
-  let frame = 0;
   const onPointerMove = event => {
     const rect = host.getBoundingClientRect();
-    targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 0.42;
-    targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 0.22;
+    targetX = ((event.clientX - rect.left) / rect.width - .5) * .42;
+    targetY = ((event.clientY - rect.top) / rect.height - .5) * .28;
   };
   host.addEventListener("pointermove", onPointerMove, { passive: true });
   host.addEventListener("pointerleave", () => { targetX = 0; targetY = 0; });
@@ -178,15 +184,22 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   });
   visibilityObserver.observe(host);
 
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let frame = 0;
   function animate() {
     frame = requestAnimationFrame(animate);
     if (!visible) return;
-    pointerX += (targetX - pointerX) * 0.035;
-    pointerY += (targetY - pointerY) * 0.035;
-    city.rotation.y = Math.sin(performance.now() * 0.00013) * 0.08 + pointerX;
-    city.rotation.x = pointerY;
-    particles.rotation.y -= 0.00035;
-    ring.rotation.z += 0.00045;
+    pointerX += (targetX - pointerX) * .035;
+    pointerY += (targetY - pointerY) * .035;
+    if (!reducedMotion) {
+      core.rotation.y += .0018;
+      cellLines.rotation.y -= .0012;
+      orbitGroup.rotation.y += .0011;
+      particles.rotation.y += .00022;
+    }
+    core.rotation.x += (pointerY - core.rotation.x) * .035;
+    core.rotation.z += (pointerX - core.rotation.z) * .025;
+    orbitGroup.rotation.x += (pointerY * .35 - orbitGroup.rotation.x) * .012;
     renderer.render(scene, camera);
   }
   animate();
@@ -197,5 +210,11 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     visibilityObserver.disconnect();
     host.removeEventListener("pointermove", onPointerMove);
     renderer.dispose();
+    scene.traverse(object => {
+      if (object.geometry) object.geometry.dispose();
+      if (object.material) {
+        (Array.isArray(object.material) ? object.material : [object.material]).forEach(material => material.dispose());
+      }
+    });
   }, { once: true });
 })();
