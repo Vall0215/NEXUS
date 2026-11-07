@@ -5406,3 +5406,98 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
   .pricing-card.featured .pricing-header { min-height:195px!important; }
   .pricing-card.featured .popular-badge { margin-bottom:17px!important; }
 }
+
+
+/* Slim icon rail inspired by the reference's connected timeline navigation. */
+.nx-section-rail {
+  position:fixed;left:18px;top:50%;transform:translateY(-50%);
+  z-index:1500;display:flex;flex-direction:column;align-items:center;gap:34px;
+  width:52px;padding:13px 0;
+}
+.nx-rail-track {
+  position:absolute;left:50%;top:38px;bottom:38px;width:1px;
+  transform:translateX(-50%);
+  background:linear-gradient(to bottom,transparent,rgba(233,196,106,.52) 10%,rgba(233,196,106,.24) 90%,transparent);
+  pointer-events:none;
+}
+.nx-rail-link {
+  position:relative;z-index:1;display:grid;place-items:center;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(233,196,106,.25);
+  background:rgba(20,19,15,.94);color:#b9b3a3;text-decoration:none;
+  box-shadow:0 7px 22px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  transition:color .22s ease,border-color .22s ease,background .22s ease,transform .22s ease,box-shadow .22s ease;
+}
+.nx-rail-link svg { width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round; }
+.nx-rail-link span {
+  position:absolute;left:56px;top:50%;transform:translate(-5px,-50%);
+  padding:8px 11px;border:1px solid rgba(233,196,106,.2);border-radius:7px;
+  background:rgba(18,17,13,.96);color:#eee5d0;white-space:nowrap;
+  font:500 10px "IBM Plex Mono",monospace;letter-spacing:.04em;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease,visibility .18s;
+}
+.nx-rail-link:hover,.nx-rail-link:focus-visible,.nx-rail-link.is-active {
+  color:#18140b;border-color:#e9c46a;
+  background:linear-gradient(145deg,#f5dfa0,#d5a849);
+  box-shadow:0 0 0 5px rgba(233,196,106,.08),0 8px 26px rgba(0,0,0,.3);
+  transform:scale(1.07);
+}
+.nx-rail-link:hover span,.nx-rail-link:focus-visible span {
+  opacity:1;visibility:visible;transform:translate(0,-50%);
+}
+.nx-rail-link:focus-visible { outline:2px solid #f5dfa0;outline-offset:4px; }
+
+/* Continuous brand-like ticker placed under the hero, not around the 3D core. */
+.nx-energy-marquee {
+  position:relative;z-index:3;overflow:hidden;width:100%;
+  padding:25px 0 27px;
+  border-top:1px solid rgba(233,196,106,.12);
+  border-bottom:1px solid rgba(233,196,106,.12);
+  background:linear-gradient(90deg,#0c0c09,#17140e 50%,#0c0c09);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+}
+.nx-marquee-track {
+  display:flex;width:max-content;align-items:center;
+  animation:nx-marquee-scroll 34s linear infinite;
+  will-change:transform;
+}
+.nx-energy-marquee:hover .nx-marquee-track { animation-play-state:paused; }
+.nx-marquee-group { display:flex;align-items:center;flex-shrink:0;gap:clamp(34px,5vw,82px);padding:0 clamp(17px,2.5vw,40px); }
+.nx-marquee-item {
+  display:inline-flex;align-items:center;gap:clamp(13px,2vw,28px);
+  color:#d7d0bf;font:500 clamp(13px,1.25vw,17px) "IBM Plex Mono",monospace;
+  letter-spacing:.15em;white-space:nowrap;opacity:.82;
+}
+.nx-marquee-item b,.nx-marquee-item i {
+  color:#e9c46a;font-size:19px;font-style:normal;font-weight:400;
+}
+.nx-marquee-brand { color:#f4e5bd;font-family:Inter,sans-serif;font-weight:700;letter-spacing:.22em;font-size:clamp(16px,1.55vw,21px); }
+.nx-marquee-brand i { font-size:23px; }
+@keyframes nx-marquee-scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+@media(max-width:900px) {
+  .nx-section-rail { left:10px;width:44px;gap:25px; }
+  .nx-rail-link { width:39px;height:39px; }
+  .nx-rail-link svg { width:17px;height:17px; }
+}
+@media(max-width:600px) {
+  .nx-section-rail {
+    left:50%;top:auto;bottom:max(12px,env(safe-area-inset-bottom));
+    transform:translateX(-50%);flex-direction:row;gap:9px;
+    width:max-content;max-width:calc(100vw - 24px);padding:8px 10px;
+    border:1px solid rgba(233,196,106,.22);border-radius:999px;
+    background:rgba(16,15,12,.91);box-shadow:0 10px 35px rgba(0,0,0,.4);
+    backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  }
+  .nx-rail-track { left:24px;right:24px;top:50%;bottom:auto;width:auto;height:1px;transform:none; }
+  .nx-rail-link { width:39px;height:39px;flex:0 0 39px;background:#19170f; }
+  .nx-rail-link span { display:none; }
+  .nx-energy-marquee { padding:19px 0 21px; }
+  .nx-marquee-track { animation-duration:28s; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .nx-marquee-track { animation:none!important; }
+  .nx-rail-link,.nx-rail-link span { transition:none!important; }
+}
