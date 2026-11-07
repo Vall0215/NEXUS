@@ -4617,3 +4617,146 @@ h1, h2, h3, h4,
 body, p, button, input, select, nav, label {
   font-family: "Inter", sans-serif;
 }
+
+
+/* ==========================================================
+   NEXUS — OBSIDIAN + ANTIQUE GOLD COLOR SYSTEM
+   Dark graphite surfaces, warm ivory text and restrained gold.
+   ========================================================== */
+:root {
+  --nx-abyss: #11100d;
+  --nx-deep: #191711;
+  --nx-kelp: #252117;
+  --nx-mist: #f4efe3;
+  --nx-white: #fffaf0;
+  --nx-silver: #bdb5a3;
+  --nx-ash: #e9e1d0;
+  --nx-slate: #82775f;
+  --nx-lavender: #e9c46a;
+  --nx-aurora: linear-gradient(105deg, #a97924 0%, #e9c46a 52%, #f5dfa0 100%);
+}
+html, body { background: var(--nx-abyss) !important; color: var(--nx-mist) !important; }
+.navbar, .hero-reimagined, .section, .section:nth-of-type(even),
+.pricing-section, #copiloto, footer {
+  background-color: var(--nx-abyss) !important;
+  color: var(--nx-mist) !important;
+}
+#simulador, #planes { background: var(--nx-deep) !important; }
+.navbar nav a { color: var(--nx-silver) !important; }
+.navbar nav a:hover, .navbar nav a:focus { color: var(--nx-lavender) !important; }
+.logo, .logo-icon { color: var(--nx-white) !important; }
+.logo-icon { background: #3a2d16 !important; }
+.nav-button, .primary-button, .hero-reimagined .primary-button,
+.pricing-card.featured .primary-button, .copilot-input button,
+.pricing-card.featured .primary-button.pricing-button {
+  background: var(--nx-aurora) !important;
+  color: #171208 !important;
+  -webkit-text-fill-color: #171208 !important;
+}
+.secondary-button {
+  color: var(--nx-mist) !important;
+  border-color: rgba(233,196,106,.38) !important;
+  background: transparent !important;
+}
+.secondary-button:hover { background: rgba(233,196,106,.08) !important; }
+.badge, .scene-float, .map-container, .controls, .copilot,
+.pricing-card, .checkout-modal {
+  background-color: var(--nx-kelp) !important;
+  border-color: rgba(233,196,106,.17) !important;
+}
+.map-data, .user-message, .ai-message, .copilot-input input,
+.checkout-summary, .payment-option {
+  background: var(--nx-deep) !important;
+  color: var(--nx-mist) !important;
+  border-color: rgba(233,196,106,.16) !important;
+}
+.section-title h2, .hero-reimagined h1, .pricing-card h3,
+.copilot-header strong, .ai-message strong, .ai-message b,
+.checkout-modal h2, .checkout-modal strong {
+  color: var(--nx-white) !important;
+}
+.section-title h2 span, .hero-reimagined h1 span { color: #e9c46a !important; }
+.hero-description, .section-title p, .pricing-card p,
+.pricing-card .features li, footer p, footer small,
+.scene-float em, .scene-float small {
+  color: var(--nx-silver) !important;
+}
+.hero-eyebrow, .badge, .hero-proof strong, .hero-bottomline,
+.scene-label-top, .scene-caption, .selected-location span,
+.data-source span, .data-source small, .data-card span,
+.data-card small, .result-card span, .result-card small,
+.plan-label, .checkout-label {
+  color: #d4bd83 !important;
+}
+.hero-proof { border-color: rgba(233,196,106,.2) !important; }
+.hero-proof strong, .data-card strong, .result-card strong,
+.price strong, .pricing-card.featured .price strong {
+  color: #f0cf79 !important;
+}
+.data-card, .data-card:nth-of-type(2), .data-card.highlight,
+.result-card, .result-card:nth-child(1), .result-card:nth-child(2),
+.result-card:nth-child(3), .result-card:nth-child(4) {
+  background: #2a2418 !important;
+  border-color: rgba(233,196,106,.16) !important;
+  color: var(--nx-mist) !important;
+}
+.data-card:nth-of-type(2), .data-card.highlight,
+.pricing-card.featured, .recommendation {
+  background: #332817 !important;
+  border-color: rgba(233,196,106,.28) !important;
+}
+.recommendation span { color: #d4bd83 !important; }
+.recommendation strong { color: var(--nx-white) !important; }
+.ai-icon, .float-icon, .float-icon.gold, .float-icon.blue,
+.checkout-icon {
+  background: rgba(233,196,106,.13) !important;
+  color: #f0cf79 !important;
+}
+.badge-pulse, .scene-dot {
+  background: #e9c46a !important;
+  box-shadow: 0 0 10px rgba(233,196,106,.55) !important;
+}
+.hero-orbit { border-color: rgba(233,196,106,.09) !important; }
+.hero-reimagined .hero-backdrop,
+.nexus-scene::before {
+  background: radial-gradient(ellipse at 72% 45%, rgba(185,135,45,.16), transparent 52%) !important;
+}
+.nexus-scene::after { border-color: rgba(233,196,106,.2) !important; box-shadow: none !important; }
+.nx-section-transition { background: var(--nx-abyss) !important; }
+.nx-section-transition::before { background: linear-gradient(90deg,transparent,rgba(233,196,106,.2),transparent) !important; }
+.nx-section-transition span { background: #e9c46a !important; box-shadow: 0 0 12px rgba(233,196,106,.42) !important; }
+.nx-section-transition i { border-color: rgba(233,196,106,.18) !important; }
+.pricing-card.featured .plan-label, .popular-badge {
+  color: #f0cf79 !important;
+  background: rgba(233,196,106,.12) !important;
+}
+.pricing-card:not(.featured) .secondary-button.pricing-button {
+  background: #191711 !important;
+  color: #f4efe3 !important;
+  -webkit-text-fill-color: #f4efe3 !important;
+  border-color: rgba(233,196,106,.28) !important;
+}
+.pricing-card:not(.featured) .secondary-button.pricing-button:hover {
+  background: #332817 !important;
+  border-color: rgba(233,196,106,.5) !important;
+}
+.pricing-card.featured .primary-button.pricing-button {
+  background: var(--nx-aurora) !important;
+  color: #171208 !important;
+  -webkit-text-fill-color: #171208 !important;
+}
+.copilot-header, .conversation, .copilot-input { background: var(--nx-kelp) !important; }
+.copilot-header, .copilot-input { border-color: rgba(233,196,106,.2) !important; }
+.copilot-input input::placeholder { color: #92866d !important; }
+.selected-location { border-color: rgba(233,196,106,.2) !important; }
+.controls label { color: var(--nx-mist) !important; }
+.controls label strong { color: #f0cf79 !important; }
+.controls select, .controls input:not([type=range]) {
+  background: var(--nx-deep) !important;
+  color: var(--nx-white) !important;
+  border-color: rgba(233,196,106,.25) !important;
+}
+.controls input[type=range] { accent-color: #e9c46a !important; }
+footer .logo-icon { background: #3a2d16 !important; }
+.modal-overlay { background: rgba(8,7,5,.86) !important; }
+.checkout-label { color: #d4bd83 !important; }
