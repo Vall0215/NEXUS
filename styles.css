@@ -5651,3 +5651,46 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
     background-position:50% 50%,50% 50%,50% 50%,50% 50%,50% 50%,0 0!important;
   }
 }
+
+
+/* Masked media-style heading: metallic image-like fill, moving spotlight and pointer parallax. */
+.hero-reimagined h1.nx-masked-heading {
+  --mh-x:50%;--mh-y:50%;--mh-shift-x:0px;--mh-shift-y:0px;
+  perspective:900px;
+}
+.hero-reimagined h1.nx-masked-heading .nx-mask-word,
+.hero-reimagined h1.nx-masked-heading .nx-mask-accent {
+  background-image:
+    radial-gradient(ellipse 34% 75% at var(--mh-x) var(--mh-y),
+      rgba(255,250,231,.98) 0%,rgba(255,232,177,.68) 17%,rgba(233,196,106,.12) 46%,transparent 72%),
+    radial-gradient(ellipse at 14% 30%,#f7e7c5 0%,transparent 25%),
+    radial-gradient(ellipse at 78% 72%,#95622c 0%,transparent 31%),
+    linear-gradient(115deg,#70451f 0%,#d9b36b 17%,#fff4d8 30%,#8d6941 43%,#f5ead7 55%,#b17a36 68%,#f8e8c0 82%,#795022 100%)!important;
+  background-size:100% 100%,180% 180%,190% 190%,260% 100%!important;
+  background-position:var(--mh-x) var(--mh-y),0% 20%,100% 70%,var(--mh-x) 50%!important;
+  background-clip:text!important;-webkit-background-clip:text!important;
+  -webkit-text-fill-color:transparent!important;color:transparent!important;
+  filter:drop-shadow(0 1px 0 rgba(255,235,190,.12));
+  transition:filter .35s ease;
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-pointer .nx-mask-word,
+.hero-reimagined h1.nx-masked-heading.nx-mask-pointer .nx-mask-accent {
+  filter:brightness(1.12) drop-shadow(0 0 13px rgba(233,196,106,.14));
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-word,
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-accent {
+  animation:nx-masked-media-drift 10s ease-in-out infinite alternate!important;
+}
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-word-2 { animation-delay:-3.2s!important; }
+.hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-accent { animation-delay:-6.1s!important; }
+@keyframes nx-masked-media-drift {
+  0% { background-position:12% 20%,0% 20%,100% 70%,0% 50%; }
+  50% { background-position:55% 45%,65% 80%,25% 20%,55% 50%; }
+  100% { background-position:88% 75%,100% 15%,0% 90%,100% 50%; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-word,
+  .hero-reimagined h1.nx-masked-heading.nx-mask-ready .nx-mask-accent {
+    animation:none!important;
+  }
+}
