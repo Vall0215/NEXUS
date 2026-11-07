@@ -27,7 +27,7 @@
 
     <link
         rel="stylesheet"
-        href="styles.css?v=reactbits-motion-1"
+        href="styles.css?v=glass-branches-tech-1"
     >
 
 </head>
@@ -44,35 +44,25 @@
                 N
             </span>
 
-            <span>
-                NEXUS
+            <span class="nx-tech-wordmark" aria-label="NEXUS">
+                <svg viewBox="0 0 156 32" role="img" aria-hidden="true"><text x="1" y="25">NEXUS</text></svg>
             </span>
 
         </div>
 
 
-        <nav>
-
-            <a href="#inicio">
-                Inicio
-            </a>
-
-            <a href="#mapa">
-                Mapa energético
-            </a>
-
-            <a href="#simulador">
-                Simulador
-            </a>
-
-            <a href="#copiloto">
-                Copiloto IA
-            </a>
-
-            <a href="#planes">
-                Planes
-            </a>
-
+        <nav class="nx-branch-nav" aria-label="Navegación principal">
+            <button class="nx-branch-toggle" type="button" aria-expanded="false" aria-controls="nx-branch-panel">
+                Explorar secciones <span class="nx-branch-chevron">⌄</span>
+            </button>
+            <div class="nx-branch-panel" id="nx-branch-panel">
+                <span class="nx-branch-trunk" aria-hidden="true"></span>
+                <a href="#inicio"><i>01</i><span>Inicio</span></a>
+                <a href="#mapa"><i>02</i><span>Mapa energético</span></a>
+                <a href="#simulador"><i>03</i><span>Simulador</span></a>
+                <a href="#copiloto"><i>04</i><span>Copiloto IA</span></a>
+                <a href="#planes"><i>05</i><span>Planes</span></a>
+            </div>
         </nav>
 
 
@@ -1072,7 +1062,7 @@
 
 
     <script type="module" src="scene3d.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=glass-branches-tech-1"></script>
 
 
 </body>
