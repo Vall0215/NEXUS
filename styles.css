@@ -5360,3 +5360,49 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
     padding-top:38px!important;min-height:185px!important;
   }
 }
+
+
+/* Structural fix: the featured badge now occupies its own row in normal flow. */
+.pricing-card.featured .pricing-header {
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  padding-top:0!important;
+  min-height:190px!important;
+}
+.pricing-card.featured .popular-badge {
+  position:static!important;
+  inset:auto!important;
+  align-self:flex-end!important;
+  display:inline-flex!important;
+  flex:0 0 auto!important;
+  width:max-content!important;
+  max-width:100%!important;
+  min-height:25px!important;
+  margin:0 0 17px!important;
+  padding:6px 10px!important;
+  transform:none!important;
+  white-space:nowrap!important;
+  line-height:1!important;
+  border:1px solid rgba(233,196,106,.28)!important;
+  border-radius:6px!important;
+  background:rgba(233,196,106,.10)!important;
+  color:#e9c46a!important;
+  font:500 9px "IBM Plex Mono",monospace!important;
+  letter-spacing:.10em!important;
+  z-index:auto!important;
+}
+.pricing-card.featured .plan-label {
+  display:block!important;
+  position:static!important;
+  margin:0 0 6px!important;
+  line-height:1.5!important;
+  color:#d8bb75!important;
+  background:transparent!important;
+}
+.pricing-card.featured .pricing-header h3 { margin-top:0!important; }
+@media(max-width:600px) {
+  .pricing-card.featured .pricing-header { min-height:195px!important; }
+  .pricing-card.featured .popular-badge { margin-bottom:17px!important; }
+}
