@@ -5697,7 +5697,7 @@ footer { background:#080907!important;border-top:1px solid var(--nx-border)!impo
 
 
 /* NEXUS map tile treatment */
-/* Darken the HOT basemap while keeping Leaflet controls and markers untouched. */
+/* Restore natural map colors and gently enhance saturation without affecting markers or controls. */
 #map .leaflet-tile-pane {
-    filter: grayscale(0.72) invert(0.88) hue-rotate(180deg) brightness(0.78) contrast(0.92);
+    filter: saturate(1.22) contrast(1.04) brightness(1.03);
 }
