@@ -127,4 +127,4 @@ const markup = `<div
 
 
     </div>`;
-export default function CheckoutModal(){return <div dangerouslySetInnerHTML={{__html:markup}}/>;}
+export default function CheckoutModal(){return <div className="react-fragment" dangerouslySetInnerHTML={{__html:markup}}/>;}
