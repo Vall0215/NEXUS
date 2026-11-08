@@ -2,16 +2,13 @@ const express = require("express");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const path = require("path");
-
 const app = express();
 const PORT = process.env.PORT || 3000;
-
 app.disable("x-powered-by");
 app.use(helmet({
   contentSecurityPolicy: false
 }));
 app.use(express.json({ limit: "30kb" }));
-
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 100,
@@ -20,26 +17,21 @@ const apiLimiter = rateLimit({
   message: { error: "Demasiadas solicitudes. Intenta nuevamente más tarde." }
 });
 app.use("/api", apiLimiter);
-
 const validCoordinate = (value, min, max) =>
   Number.isFinite(value) && value >= min && value <= max;
-
 function dateString(date) {
   return date.toISOString().slice(0, 10).replaceAll("-", "");
 }
-
 function parsePowerSeries(series) {
   return Object.entries(series || {})
     .filter(([, value]) => Number.isFinite(Number(value)) && Number(value) > -900)
     .map(([date, value]) => ({ date, value: Number(value) }));
 }
-
 function summarize(values) {
   if (!values.length) return null;
   const total = values.reduce((sum, item) => sum + item.value, 0);
   return Number((total / values.length).toFixed(2));
 }
-
 app.get("/api/health", (_req, res) => {
   res.json({
     status: "ok",
@@ -47,7 +39,6 @@ app.get("/api/health", (_req, res) => {
     timestamp: new Date().toISOString()
   });
 });
-
 /**
  * Daily NASA POWER point data.
  * Solar radiation: ALLSKY_SFC_SW_DWN (kWh/m²/day)
@@ -56,7 +47,6 @@ app.get("/api/health", (_req, res) => {
 app.get("/api/energy-data", async (req, res) => {
   const latitude = Number(req.query.latitude);
   const longitude = Number(req.query.longitude);
-
   if (
     !validCoordinate(latitude, -90, 90) ||
     !validCoordinate(longitude, -180, 180)
@@ -65,18 +55,15 @@ app.get("/api/energy-data", async (req, res) => {
       error: "Debes proporcionar latitud y longitud válidas."
     });
   }
-
   const endDate = req.query.end || dateString(new Date(Date.now() - 2 * 86400000));
   const defaultStart = new Date();
   defaultStart.setUTCDate(defaultStart.getUTCDate() - 31);
   const startDate = req.query.start || dateString(defaultStart);
-
   if (!/^\d{8}$/.test(startDate) || !/^\d{8}$/.test(endDate) || startDate > endDate) {
     return res.status(400).json({
       error: "El rango de fechas debe usar YYYYMMDD y tener un inicio anterior al final."
     });
   }
-
   const url = new URL("https://power.larc.nasa.gov/api/temporal/daily/point");
   url.search = new URLSearchParams({
     parameters: "ALLSKY_SFC_SW_DWN,T2M",
@@ -88,28 +75,23 @@ app.get("/api/energy-data", async (req, res) => {
     "time-standard": "UTC",
     format: "JSON"
   }).toString();
-
   try {
     const response = await fetch(url, {
       headers: { Accept: "application/json" },
       signal: AbortSignal.timeout(30000)
     });
-
     if (!response.ok) {
       throw new Error(`NASA POWER respondió con HTTP ${response.status}`);
     }
-
     const payload = await response.json();
     const parameters = payload?.properties?.parameter || {};
     const solar = parsePowerSeries(parameters.ALLSKY_SFC_SW_DWN);
     const temperature = parsePowerSeries(parameters.T2M);
-
     if (!solar.length && !temperature.length) {
       return res.status(502).json({
         error: "NASA POWER no devolvió datos para la ubicación y el periodo seleccionados."
       });
     }
-
     res.json({
       source: "NASA POWER",
       community: "RE",
@@ -141,7 +123,6 @@ app.get("/api/energy-data", async (req, res) => {
     });
   }
 });
-
 /**
  * AI provider adapter.
  * Configure an OpenAI-compatible Chat Completions endpoint through environment variables.
@@ -149,20 +130,17 @@ app.get("/api/energy-data", async (req, res) => {
  */
 app.post("/api/copilot", async (req, res) => {
   const { question, context = {} } = req.body || {};
-
   if (typeof question !== "string" || !question.trim() || question.length > 2000) {
     return res.status(400).json({
       error: "Escribe una pregunta de máximo 2.000 caracteres."
     });
   }
-
   const { AI_API_URL, AI_API_KEY, AI_MODEL } = process.env;
   if (!AI_API_URL || !AI_API_KEY || !AI_MODEL) {
     return res.status(503).json({
       error: "El Copiloto IA todavía no está configurado. Falta definir el proveedor y sus credenciales."
     });
   }
-
   try {
     const aiResponse = await fetch(AI_API_URL, {
       method: "POST",
@@ -186,16 +164,12 @@ app.post("/api/copilot", async (req, res) => {
       }),
       signal: AbortSignal.timeout(45000)
     });
-
     if (!aiResponse.ok) {
       throw new Error(`El proveedor de IA respondió con HTTP ${aiResponse.status}`);
     }
-
     const data = await aiResponse.json();
     const answer = data?.choices?.[0]?.message?.content;
-
     if (!answer) throw new Error("El proveedor de IA no devolvió una respuesta válida.");
-
     res.json({ answer, model: AI_MODEL });
   } catch (error) {
     console.error("Copilot request failed:", error.message);
@@ -205,10 +179,8 @@ app.post("/api/copilot", async (req, res) => {
     });
   }
 });
-
 // Serve the existing frontend from the same application.
 app.use(express.static(path.join(__dirname, "dist")));
-
 app.get("*", (req, res, next) => {
   if (req.path.startsWith("/api/")) {
     return res.status(404).json({ error: "Ruta API no encontrada." });
@@ -217,7 +189,6 @@ app.get("*", (req, res, next) => {
     if (error) next(error);
   });
 });
-
 app.listen(PORT, () => {
   console.log(`NEXUS server running on port ${PORT}`);
 });
