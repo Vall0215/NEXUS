@@ -1,9 +1,7 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.module.js";
-
 (() => {
   const host = document.querySelector(".nexus-scene");
   if (!host) return;
-
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
@@ -12,7 +10,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     host.classList.add("nx-webgl-fallback");
     return;
   }
-
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.8));
   renderer.setSize(host.clientWidth, host.clientHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -22,12 +19,10 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   renderer.domElement.setAttribute("aria-hidden", "true");
   host.prepend(renderer.domElement);
   host.classList.add("nx-webgl-ready");
-
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, host.clientWidth / host.clientHeight, .1, 100);
   camera.position.set(0, 1.2, 10.8);
   camera.lookAt(0, 0, 0);
-
   scene.add(new THREE.HemisphereLight(0xffe8b5, 0x171008, 2.2));
   const key = new THREE.DirectionalLight(0xffe6a3, 3.5);
   key.position.set(4, 6, 7);
@@ -38,10 +33,8 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   const warm = new THREE.PointLight(0xffd77a, 26, 14);
   warm.position.set(4, -2, 4);
   scene.add(warm);
-
   const core = new THREE.Group();
   scene.add(core);
-
   const sphere = new THREE.Mesh(
     new THREE.SphereGeometry(1.72, 96, 96),
     new THREE.MeshPhysicalMaterial({
@@ -51,19 +44,16 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     })
   );
   core.add(sphere);
-
   const innerGlow = new THREE.Mesh(
     new THREE.SphereGeometry(1.64, 64, 64),
     new THREE.MeshBasicMaterial({ color: 0xf2c76b, transparent: true, opacity: .10, wireframe: true })
   );
   core.add(innerGlow);
-
   const wire = new THREE.Mesh(
     new THREE.IcosahedronGeometry(1.78, 2),
     new THREE.MeshBasicMaterial({ color: 0xf2d18a, wireframe: true, transparent: true, opacity: .16 })
   );
   core.add(wire);
-
   // Solar-cell facets arranged as a fine, curved grid over the energy sphere.
   const cellMaterial = new THREE.MeshStandardMaterial({
     color: 0x292219, metalness: .82, roughness: .28,
@@ -93,7 +83,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     cellLines.add(meridian);
   }
   core.add(cellLines);
-
   // Three orbital rings, deliberately thin and elegant rather than dashboard-like.
   const orbitGroup = new THREE.Group();
   scene.add(orbitGroup);
@@ -111,7 +100,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     orbitGroup.add(mesh);
     return mesh;
   });
-
   // Small solar collectors mounted along the outer orbit.
   const collectorGroup = new THREE.Group();
   const collectorMaterial = new THREE.MeshStandardMaterial({
@@ -137,7 +125,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     collectorGroup.add(panel);
   }
   orbitGroup.add(collectorGroup);
-
   // Fine energy particles around the orbital field.
   const positions = [];
   for (let i = 0; i < 220; i++) {
@@ -152,14 +139,12 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     new THREE.PointsMaterial({ color: 0xf5dfa0, size: .026, transparent: true, opacity: .76, sizeAttenuation: true })
   );
   scene.add(particles);
-
   const halo = new THREE.Mesh(
     new THREE.CircleGeometry(4.4, 96),
     new THREE.MeshBasicMaterial({ color: 0x9b671f, transparent: true, opacity: .055, side: THREE.DoubleSide })
   );
   halo.position.z = -2.7;
   scene.add(halo);
-
   let pointerX = 0, pointerY = 0, targetX = 0, targetY = 0;
   const onPointerMove = event => {
     const rect = host.getBoundingClientRect();
@@ -168,7 +153,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
   };
   host.addEventListener("pointermove", onPointerMove, { passive: true });
   host.addEventListener("pointerleave", () => { targetX = 0; targetY = 0; });
-
   const resizeObserver = new ResizeObserver(() => {
     const width = host.clientWidth, height = host.clientHeight;
     if (!width || !height) return;
@@ -177,13 +161,11 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     renderer.setSize(width, height);
   });
   resizeObserver.observe(host);
-
   let visible = true;
   const visibilityObserver = new IntersectionObserver(entries => {
     visible = entries.some(entry => entry.isIntersecting);
   });
   visibilityObserver.observe(host);
-
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let frame = 0;
   function animate() {
@@ -203,7 +185,6 @@ import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.164.1/build/three.m
     renderer.render(scene, camera);
   }
   animate();
-
   window.addEventListener("pagehide", () => {
     cancelAnimationFrame(frame);
     resizeObserver.disconnect();

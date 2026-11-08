@@ -1,45 +1,30 @@
 function irAlMapa() {
-
     document.getElementById("mapa").scrollIntoView({
         behavior: "smooth"
     });
-
 }
-
-
 function irAlSimulador() {
-
     document.getElementById("simulador").scrollIntoView({
         behavior: "smooth"
     });
-
 }
-
-
 function mostrarDemo() {
-
     alert(
         "NEXUS analiza una ubicación, simula escenarios de energía renovable y genera recomendaciones mediante su Copiloto Energético."
     );
-
 }
-
-
 document.addEventListener("DOMContentLoaded", function () {
     if (typeof L === "undefined") {
         console.error("NEXUS: Leaflet no se pudo cargar.");
         return;
     }
-
     const mapElement = document.getElementById("map");
     if (!mapElement) {
         console.error("NEXUS: No se encontró el elemento #map.");
         return;
     }
-
     const initialLocation = [10.9685, -74.7813];
     const nexusMap = L.map("map").setView(initialLocation, 12);
-
     L.tileLayer(
         "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
         {
@@ -48,23 +33,18 @@ document.addEventListener("DOMContentLoaded", function () {
             maxZoom: 19
         }
     ).addTo(nexusMap);
-
     let nexusMarker = L.marker(initialLocation).addTo(nexusMap);
     let latestRequestId = 0;
-
     nexusMarker.bindPopup("<strong>NEXUS</strong><br>Barranquilla, Atlántico").openPopup();
-
     function updateText(id, value) {
         const element = document.getElementById(id);
         if (element) element.textContent = value;
     }
-
     function readAnnualValue(parameter) {
         const annual = parameter && (parameter.ANN ?? parameter.ann ?? parameter.ANNUAL);
         if (annual !== undefined && annual !== null && Number.isFinite(Number(annual)) && Number(annual) > -900) {
             return Number(annual);
         }
-
         const values = [];
         function collect(value) {
             if (typeof value === "number" || (typeof value === "string" && value.trim() !== "")) {
@@ -80,7 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!values.length) throw new Error("NASA POWER no devolvió valores válidos para este punto.");
         return values.reduce((sum, value) => sum + value, 0) / values.length;
     }
-
     function classifySolarPotential(radiation) {
         if (radiation >= 5) {
             return { level: "ALTO", description: "Recurso solar promedio favorable" };
@@ -90,17 +69,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return { level: "BAJO", description: "Recurso solar promedio limitado" };
     }
-
     async function actualizarUbicacion(latitude, longitude) {
         const requestId = ++latestRequestId;
-
         updateText("locationName", `Lat ${latitude.toFixed(4)}, Lon ${longitude.toFixed(4)}`);
         updateText("solarRadiation", "…");
         updateText("temperature", "…");
         updateText("solarPotential", "…");
         updateText("potentialText", "Consultando NASA POWER…");
         updateText("nasaStatus", "Consultando datos para esta coordenada…");
-
         const params = new URLSearchParams({
             parameters: "ALLSKY_SFC_SW_DWN,T2M",
             community: "RE",
@@ -108,25 +84,20 @@ document.addEventListener("DOMContentLoaded", function () {
             latitude: latitude.toFixed(4),
             format: "JSON"
         });
-
         const url = `https://power.larc.nasa.gov/api/temporal/climatology/point?${params.toString()}`;
-
         try {
             const response = await fetch(url, {
                 headers: { Accept: "application/json" }
             });
             if (!response.ok) throw new Error(`NASA POWER respondió HTTP ${response.status}`);
-
             const payload = await response.json();
             const parameters = payload?.properties?.parameter;
             if (!parameters) {
                 throw new Error(payload?.messages?.join?.(" ") || "La respuesta de NASA POWER no contiene los parámetros solicitados.");
             }
-
             const radiation = readAnnualValue(parameters.ALLSKY_SFC_SW_DWN);
             const temperature = readAnnualValue(parameters.T2M);
             if (requestId !== latestRequestId) return;
-
             const potential = classifySolarPotential(radiation);
             updateText("solarRadiation", radiation.toFixed(2));
             updateText("temperature", temperature.toFixed(1));
@@ -143,7 +114,6 @@ document.addEventListener("DOMContentLoaded", function () {
             updateText("nasaStatus", "Datos no disponibles. Verifica la conexión e inténtalo de nuevo.");
         }
     }
-
     nexusMap.on("click", function (event) {
         const { lat, lng } = event.latlng;
         if (nexusMarker) nexusMap.removeLayer(nexusMarker);
@@ -153,276 +123,177 @@ document.addEventListener("DOMContentLoaded", function () {
         ).openPopup();
         actualizarUbicacion(lat, lng);
     });
-
     actualizarUbicacion(initialLocation[0], initialLocation[1]);
     setTimeout(() => nexusMap.invalidateSize(), 500);
 });
-
-
 function actualizarSimulacion() {
-
-
     const panelesElement =
         document.getElementById("paneles");
-
-
     const bateriaElement =
         document.getElementById("bateria");
-
-
     if (!panelesElement) {
         return;
     }
-
-
     const paneles =
         Number(
             panelesElement.value
         );
-
     const bateria =
         Number(
             bateriaElement.value
         );
-
-
     document.getElementById(
         "panelValue"
     ).textContent =
-
         `${paneles} paneles`;
-
-
     let generacion =
         paneles * 52;
-
-
     if (bateria === 1) {
-
         generacion *= 1.05;
-
     }
-
     if (bateria === 2) {
-
         generacion *= 1.10;
-
     }
-
     generacion =
         Math.round(
             generacion
         );
-
     const ahorro =
         generacion * 550;
-
-
     let retorno =
         7 -
         (
             paneles * 0.12
         );
-
     if (bateria === 1) {
-
         retorno += 0.5;
-
     }
-
     if (bateria === 2) {
-
         retorno += 1;
-
     }
-
     retorno =
         Math.max(
             3,
             retorno
         );
-
-
     document.getElementById(
         "generacion"
     ).textContent =
-
         generacion.toLocaleString(
             "es-CO"
         );
-
     document.getElementById(
         "ahorro"
     ).textContent =
-
         "$" +
         Math.round(
             ahorro
         ).toLocaleString(
             "es-CO"
         );
-
     document.getElementById(
         "retorno"
     ).textContent =
-
         retorno.toFixed(1);
-
 }
-
 function analizarEscenario() {
-
-
     actualizarSimulacion();
-
-
     document.getElementById(
         "copiloto"
     ).scrollIntoView({
-
         behavior: "smooth"
-
     });
-
-
 }
-
 function enviarPregunta() {
-
-
     const input =
         document.getElementById(
             "copilotQuestion"
         );
-
-
     if (!input) {
         return;
     }
-
-
     const pregunta =
         input.value.trim();
-
-
-
     if (
         pregunta === ""
     ) {
-
         return;
-
     }
-
     const conversation =
         document.querySelector(
             ".conversation"
         );
-
     const userMessage =
         document.createElement(
             "div"
         );
-
-
     userMessage.className =
         "user-message";
-
-
     userMessage.textContent =
         pregunta;
-
-
-
     conversation.appendChild(
         userMessage
     );
-
     const aiMessage =
         document.createElement(
             "div"
         );
-
-
     aiMessage.className =
         "ai-message";
-
-
     aiMessage.innerHTML = `
-
         <strong>
             ✦ NEXUS
         </strong>
-
         <p>
             He analizado tu consulta
             dentro del escenario actual.
         </p>
-
         <p>
             ☀️ El potencial solar de la
             ubicación seleccionada es
             <b>favorable</b>.
         </p>
-
         <p>
             Te recomiendo comparar
             diferentes configuraciones
             de paneles antes de realizar
             una inversión.
         </p>
-
         <div class="recommendation">
-
             <span>
                 RECOMENDACIÓN
             </span>
-
             <strong>
                 Analizar diferentes escenarios
             </strong>
-
         </div>
-
     `;
-
     conversation.appendChild(
         aiMessage
     );
-
-
     input.value = "";
-
     conversation.scrollTop =
         conversation.scrollHeight;
-
 }
-
 document.addEventListener(
     "DOMContentLoaded",
     function () {
-
         actualizarSimulacion();
-
     }
 );
-
 /* NEXUS interaction polish: scroll reveals, header state and gentle 3D parallax */
 document.addEventListener("DOMContentLoaded", function () {
     const reduceMotion = window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const revealTargets = document.querySelectorAll(
         ".section-title, .map-container, .simulator, .copilot, .pricing-card, .payment-method"
     );
-
     revealTargets.forEach(function (element, index) {
         element.classList.add("nx-reveal");
         if (element.classList.contains("pricing-card")) {
             element.dataset.nxDelay = String((index % 4) + 1);
         }
     });
-
     if ("IntersectionObserver" in window && !reduceMotion) {
         const revealObserver = new IntersectionObserver(function (entries, observer) {
             entries.forEach(function (entry) {
@@ -432,7 +303,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
         }, { threshold: 0.12, rootMargin: "0px 0px -45px 0px" });
-
         revealTargets.forEach(function (element) {
             revealObserver.observe(element);
         });
@@ -441,14 +311,12 @@ document.addEventListener("DOMContentLoaded", function () {
             element.classList.add("nx-visible");
         });
     }
-
     const navbar = document.querySelector(".navbar");
     function updateNavbar() {
         if (navbar) navbar.classList.toggle("nx-scrolled", window.scrollY > 24);
     }
     updateNavbar();
     window.addEventListener("scroll", updateNavbar, { passive: true });
-
     const scene = document.querySelector(".nexus-scene");
     if (scene && !reduceMotion && window.matchMedia("(pointer:fine)").matches) {
         const hero = document.querySelector(".hero-reimagined");
@@ -467,17 +335,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 });
-
-
 /* React Bits-inspired interactions, implemented without a React dependency */
 document.addEventListener("DOMContentLoaded", function () {
     const reduceMotion = window.matchMedia &&
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
     const spotlightTargets = document.querySelectorAll(
         ".data-card, .result-card, .pricing-card, .map-data, .controls, .copilot"
     );
-
     spotlightTargets.forEach(function (card) {
         card.classList.add("nx-spotlight");
         if (reduceMotion || !window.matchMedia("(pointer:fine)").matches) return;
@@ -487,7 +351,6 @@ document.addEventListener("DOMContentLoaded", function () {
             card.style.setProperty("--nx-pointer-y", (event.clientY - rect.top) + "px");
         });
     });
-
     /* Subtle count-up-style feedback whenever simulator metrics recalculate. */
     const metricTargets = document.querySelectorAll(".result-card strong, .data-card strong");
     if (!reduceMotion && "MutationObserver" in window) {
@@ -504,8 +367,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
-
-
 /* Branched navigation interaction and Tech Text wordmark */
 document.addEventListener("DOMContentLoaded", function () {
     const branchNav = document.querySelector(".nx-branch-nav");
@@ -533,7 +394,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
     const techWordmark = document.querySelector(".nx-tech-wordmark");
     if (techWordmark) {
         techWordmark.setAttribute("tabindex", "0");
@@ -550,13 +410,10 @@ document.addEventListener("DOMContentLoaded", function () {
             techWordmark.classList.remove("is-tech-active");
         });
     }
-
     document.querySelectorAll(".controls,.results,.result-card,.copilot,.pricing-card").forEach(function (panel) {
         panel.classList.add("nx-glass-surface");
     });
 });
-
-
 /* Active section state for the fixed icon rail. */
 document.addEventListener("DOMContentLoaded", function () {
     const railLinks = Array.from(document.querySelectorAll(".nx-rail-link"));
@@ -564,7 +421,6 @@ document.addEventListener("DOMContentLoaded", function () {
         .map(link => document.querySelector(link.getAttribute("href")))
         .filter(Boolean);
     if (!railLinks.length || !("IntersectionObserver" in window)) return;
-
     const sectionObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
@@ -576,11 +432,8 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }, { rootMargin: "-35% 0px -50% 0px", threshold: 0 });
-
     sections.forEach(section => sectionObserver.observe(section));
 });
-
-
 // Trigger the masked hero title after its initial hidden state has painted.
 (function initNexusMaskedHeading() {
     const reveal = () => {
@@ -600,8 +453,6 @@ document.addEventListener("DOMContentLoaded", function () {
         reveal();
     }
 })();
-
-
 // Pointer-following spotlight and gentle parallax inside the masked metallic hero title.
 (function initMaskedHeadingSpotlight() {
     const setup = () => {
@@ -609,12 +460,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!heading || heading.dataset.spotlightReady) return;
         heading.dataset.spotlightReady = "true";
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
         let frame = 0;
         let targetX = 50, targetY = 50;
         let currentX = 50, currentY = 50;
         let active = false;
-
         const paint = () => {
             frame = 0;
             currentX += (targetX - currentX) * 0.16;
