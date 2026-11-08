@@ -55,4 +55,4 @@ const markup = `<section id="inicio" class="hero hero-reimagined">
         </div>
 
         <div class="nx-section-transition" aria-hidden="true"><span></span><i></i></div>`;
-export default function Hero(){return <div dangerouslySetInnerHTML={{__html:markup}}/>;}
+export default function Hero(){return <div className="react-fragment" dangerouslySetInnerHTML={{__html:markup}}/>;}
