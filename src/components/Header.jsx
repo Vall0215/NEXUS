@@ -24,4 +24,4 @@ const markup = `<header class="navbar">
         </button>
 
     </header>`;
-export default function Header(){return <div dangerouslySetInnerHTML={{__html:markup}}/>;}
+export default function Header(){return <div className="react-fragment" dangerouslySetInnerHTML={{__html:markup}}/>;}
