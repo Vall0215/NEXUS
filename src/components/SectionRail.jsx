@@ -16,7 +16,6 @@ const markup = `<nav class="nx-section-rail" aria-label="Navegación por seccion
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="18" cy="17" r="2"/></svg><span>Planes</span>
 </a>
 </nav>`;
-
 export default function SectionRail() {
   return <div className="react-fragment" dangerouslySetInnerHTML={{ __html: markup }} />;
 }
