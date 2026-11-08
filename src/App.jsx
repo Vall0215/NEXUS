@@ -8,14 +8,12 @@ import Copilot from "./components/Copilot";
 import Pricing from "./components/Pricing";
 import CheckoutModal from "./components/CheckoutModal";
 import Footer from "./components/Footer";
-
 export default function App() {
   useEffect(() => {
     import("../scene3d.js?v=react-components-1").catch((error) => {
       console.error("NEXUS: no se pudo iniciar la escena 3D.", error);
     });
   }, []);
-
   return (
     <>
       <SectionRail />
