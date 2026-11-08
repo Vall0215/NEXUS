@@ -253,4 +253,4 @@ const markup = `<section
 
 
         </section>`;
-export default function Pricing(){return <div dangerouslySetInnerHTML={{__html:markup}}/>;}
+export default function Pricing(){return <div className="react-fragment" dangerouslySetInnerHTML={{__html:markup}}/>;}
