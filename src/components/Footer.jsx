@@ -30,4 +30,4 @@ const markup = `<footer>
 
 
     </footer>`;
-export default function Footer(){return <div dangerouslySetInnerHTML={{__html:markup}}/>;}
+export default function Footer(){return <div className="react-fragment" dangerouslySetInnerHTML={{__html:markup}}/>;}
