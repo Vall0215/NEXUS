@@ -26,283 +26,136 @@ function mostrarDemo() {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-
-
     if (typeof L === "undefined") {
-
-        console.error(
-            "NEXUS: Leaflet no se pudo cargar."
-        );
-
+        console.error("NEXUS: Leaflet no se pudo cargar.");
         return;
-
     }
 
-    const mapElement =
-        document.getElementById("map");
-
-
+    const mapElement = document.getElementById("map");
     if (!mapElement) {
-
-        console.error(
-            "NEXUS: No se encontró el elemento #map."
-        );
-
+        console.error("NEXUS: No se encontró el elemento #map.");
         return;
-
     }
 
-
-    const nexusMap = L.map("map").setView(
-        [10.9685, -74.7813],
-        12
-    );
-
+    const initialLocation = [10.9685, -74.7813];
+    const nexusMap = L.map("map").setView(initialLocation, 12);
 
     L.tileLayer(
         "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
         {
-            attribution:
-                'Tiles courtesy of HOT &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+            attribution: 'Tiles courtesy of HOT &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
             subdomains: "abc",
             maxZoom: 19
         }
     ).addTo(nexusMap);
 
-    
-    let nexusMarker = L.marker([
+    let nexusMarker = L.marker(initialLocation).addTo(nexusMap);
+    let latestRequestId = 0;
 
-        10.9685,
-        -74.7813
+    nexusMarker.bindPopup("<strong>NEXUS</strong><br>Barranquilla, Atlántico").openPopup();
 
-    ]).addTo(nexusMap);
-
-
-    nexusMarker
-        .bindPopup(`
-
-            <div style="font-family: Arial;">
-
-                <strong>NEXUS</strong>
-
-                <br>
-
-                Barranquilla, Atlántico
-
-                <br><br>
-
-                <span style="color:#1fa463;">
-
-                    ⚡ Potencial solar: ALTO
-
-                </span>
-
-            </div>
-
-        `)
-        .openPopup();
-
-
-    nexusMap.on(
-        "click",
-        function (event) {
-
-
-            const latitude =
-                event.latlng.lat;
-
-
-            const longitude =
-                event.latlng.lng;
-
-
-            nexusMap.removeLayer(
-                nexusMarker
-            );
-
-
-            nexusMarker =
-                L.marker([
-
-                    latitude,
-                    longitude
-
-                ]).addTo(nexusMap);
-
-
-            nexusMarker
-                .bindPopup(`
-
-                    <strong>
-                        Ubicación seleccionada
-                    </strong>
-
-                    <br><br>
-
-                    Latitud:
-                    ${latitude.toFixed(4)}
-
-                    <br>
-
-                    Longitud:
-                    ${longitude.toFixed(4)}
-
-                `)
-                .openPopup();
-
-
-            actualizarUbicacion(
-                latitude,
-                longitude
-            );
-
-
-        }
-    );
-
-
-    function actualizarUbicacion(
-        latitude,
-        longitude
-    ) {
-
-
-        const diferencia =
-            Math.abs(
-                latitude - 10.9685
-            );
-
-        let radiation =
-            5.2 -
-            (diferencia * 2);
-
-        radiation =
-            Math.max(
-                3.5,
-                radiation
-            );
-
-
-        radiation =
-            radiation.toFixed(1);
-
-
-        const temperature =
-            (
-                28.4 +
-                (
-                    latitude -
-                    10.9685
-                ) * 2
-            ).toFixed(1);
-
-
-        let potential =
-            "ALTO";
-
-
-        let potentialText =
-            "Condiciones favorables";
-
-
-
-        if (radiation < 4.5) {
-
-            potential =
-                "MEDIO";
-
-            potentialText =
-                "Potencial moderado";
-
-        }
-
-
-
-        if (radiation < 3.8) {
-
-            potential =
-                "BAJO";
-
-            potentialText =
-                "Se recomienda analizar el escenario";
-
-        }
-
-
-        const locationName =
-            document.getElementById(
-                "locationName"
-            );
-
-        const solarRadiation =
-            document.getElementById(
-                "solarRadiation"
-            );
-
-        const temperatureElement =
-            document.getElementById(
-                "temperature"
-            );
-
-        const solarPotential =
-            document.getElementById(
-                "solarPotential"
-            );
-
-        const potentialTextElement =
-            document.getElementById(
-                "potentialText"
-            );
-
-
-        if (locationName) {
-
-            locationName.textContent =
-
-                `Lat ${latitude.toFixed(4)},
-                 Lon ${longitude.toFixed(4)}`;
-
-        }
-
-        if (solarRadiation) {
-
-            solarRadiation.textContent =
-                radiation;
-
-        }
-
-        if (temperatureElement) {
-
-            temperatureElement.textContent =
-                temperature;
-
-        }
-
-        if (solarPotential) {
-
-            solarPotential.textContent =
-                potential;
-
-        }
-
-        if (potentialTextElement) {
-
-            potentialTextElement.textContent =
-                potentialText;
-
-        }
-
-
+    function updateText(id, value) {
+        const element = document.getElementById(id);
+        if (element) element.textContent = value;
     }
 
+    function readAnnualValue(parameter) {
+        const annual = parameter && (parameter.ANN ?? parameter.ann ?? parameter.ANNUAL);
+        if (annual !== undefined && annual !== null && Number.isFinite(Number(annual)) && Number(annual) > -900) {
+            return Number(annual);
+        }
 
-    setTimeout(function () {
+        const values = [];
+        function collect(value) {
+            if (typeof value === "number" || (typeof value === "string" && value.trim() !== "")) {
+                const number = Number(value);
+                if (Number.isFinite(number) && number > -900) values.push(number);
+                return;
+            }
+            if (value && typeof value === "object") {
+                Object.values(value).forEach(collect);
+            }
+        }
+        collect(parameter);
+        if (!values.length) throw new Error("NASA POWER no devolvió valores válidos para este punto.");
+        return values.reduce((sum, value) => sum + value, 0) / values.length;
+    }
 
-        nexusMap.invalidateSize();
+    function classifySolarPotential(radiation) {
+        if (radiation >= 5) {
+            return { level: "ALTO", description: "Recurso solar promedio favorable" };
+        }
+        if (radiation >= 4) {
+            return { level: "MEDIO", description: "Recurso solar promedio moderado" };
+        }
+        return { level: "BAJO", description: "Recurso solar promedio limitado" };
+    }
 
-    }, 500);
+    async function actualizarUbicacion(latitude, longitude) {
+        const requestId = ++latestRequestId;
 
+        updateText("locationName", `Lat ${latitude.toFixed(4)}, Lon ${longitude.toFixed(4)}`);
+        updateText("solarRadiation", "…");
+        updateText("temperature", "…");
+        updateText("solarPotential", "…");
+        updateText("potentialText", "Consultando NASA POWER…");
+        updateText("nasaStatus", "Consultando datos para esta coordenada…");
 
+        const params = new URLSearchParams({
+            parameters: "ALLSKY_SFC_SW_DWN,T2M",
+            community: "RE",
+            longitude: longitude.toFixed(4),
+            latitude: latitude.toFixed(4),
+            format: "JSON"
+        });
+
+        const url = `https://power.larc.nasa.gov/api/temporal/climatology/point?${params.toString()}`;
+
+        try {
+            const response = await fetch(url, {
+                headers: { Accept: "application/json" }
+            });
+            if (!response.ok) throw new Error(`NASA POWER respondió HTTP ${response.status}`);
+
+            const payload = await response.json();
+            const parameters = payload?.properties?.parameter;
+            if (!parameters) {
+                throw new Error(payload?.messages?.join?.(" ") || "La respuesta de NASA POWER no contiene los parámetros solicitados.");
+            }
+
+            const radiation = readAnnualValue(parameters.ALLSKY_SFC_SW_DWN);
+            const temperature = readAnnualValue(parameters.T2M);
+            if (requestId !== latestRequestId) return;
+
+            const potential = classifySolarPotential(radiation);
+            updateText("solarRadiation", radiation.toFixed(2));
+            updateText("temperature", temperature.toFixed(1));
+            updateText("solarPotential", potential.level);
+            updateText("potentialText", potential.description);
+            updateText("nasaStatus", "Promedio climatológico de NASA POWER para el punto seleccionado.");
+        } catch (error) {
+            if (requestId !== latestRequestId) return;
+            console.error("NEXUS: error consultando NASA POWER:", error);
+            updateText("solarRadiation", "—");
+            updateText("temperature", "—");
+            updateText("solarPotential", "—");
+            updateText("potentialText", "No fue posible calcular el potencial.");
+            updateText("nasaStatus", "Datos no disponibles. Verifica la conexión e inténtalo de nuevo.");
+        }
+    }
+
+    nexusMap.on("click", function (event) {
+        const { lat, lng } = event.latlng;
+        if (nexusMarker) nexusMap.removeLayer(nexusMarker);
+        nexusMarker = L.marker([lat, lng]).addTo(nexusMap);
+        nexusMarker.bindPopup(
+            `<strong>Ubicación seleccionada</strong><br><br>Latitud: ${lat.toFixed(4)}<br>Longitud: ${lng.toFixed(4)}`
+        ).openPopup();
+        actualizarUbicacion(lat, lng);
+    });
+
+    actualizarUbicacion(initialLocation[0], initialLocation[1]);
+    setTimeout(() => nexusMap.invalidateSize(), 500);
 });
 
 
