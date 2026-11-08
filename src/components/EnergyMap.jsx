@@ -146,4 +146,4 @@ const markup = `<section
         </section>
 
         <div class="nx-section-transition" aria-hidden="true"><span></span><i></i></div>`;
-export default function EnergyMap(){return <div dangerouslySetInnerHTML={{__html:markup}}/>;}
+export default function EnergyMap(){return <div className="react-fragment" dangerouslySetInnerHTML={{__html:markup}}/>;}
