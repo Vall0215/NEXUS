@@ -3123,10 +3123,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible {
 .nexus-scene.nx-webgl-ready .scene-label-top,
 .nexus-scene.nx-webgl-ready .scene-caption { z-index:4; }
 @media(max-width:700px) { .nexus-three-canvas { opacity:.94; } }
-@media(prefers-reduced-motion:reduce) {
-  .nexus-three-canvas { display:none!important; }
-  .nexus-scene.nx-webgl-ready .energy-city { display:block!important; }
-}
+/* El planeta 3D permanece visible; la preferencia de movimiento reducido solo detiene su animación desde JavaScript. */
 /* ==========================================================
    NEXUS — DAYOS BRUTALIST EDITORIAL SYSTEM
    Warm canvas, paper cards, carbon blocks, mint signal accents.
