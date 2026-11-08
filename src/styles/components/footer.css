@@ -1,0 +1,82 @@
+footer {
+    padding: 45px 7%;
+    text-align: center;
+    background: #040D19;
+    border-top: 1px solid var(--border);
+}
+
+footer .logo {
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+footer p {
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+footer small {
+    color: #66758A;
+    font-size: 10px;
+}
+
+footer { background: #040d19; }
+
+footer p { color: #a5b5c4; }
+
+footer { border-top:1px solid rgba(157,195,200,.12); background:#04101d; }
+
+footer { background:#0e1c15; border-top:1px solid rgba(236,231,210,.13); }
+
+footer p,
+footer small { color:#b9c2b1; }
+
+footer { background:var(--nx-bg-deep)!important;border-top:1px solid rgba(255,255,255,.1)!important; }
+
+footer p,
+footer small { color:var(--nx-ash)!important; }
+
+footer { background:var(--nx-bg)!important;border-top:1px solid rgba(226,227,237,.12)!important; }
+
+footer p,
+footer small { color:var(--nx-muted)!important; }
+
+footer { background:var(--nx-bg-deep)!important;border-top:1px solid rgba(255,255,255,.1)!important; }
+
+footer p,
+footer small { color:var(--nx-muted)!important; }
+
+footer { padding:48px clamp(22px,6vw,96px)!important;background:var(--nx-carbon)!important;color:#fff!important;border:0!important; }
+
+footer .logo,
+footer .logo-icon { color:#fff!important; }
+
+footer .logo-icon { background:var(--nx-mint)!important;color:var(--nx-carbon)!important; }
+
+footer p,
+footer small { color:#c6c6c6!important; }
+
+footer { padding:64px clamp(22px,6vw,88px)!important;background:var(--nx-deep)!important;color:#fff!important;border:0!important; }
+
+footer .logo,
+footer .logo-icon { color:#fff!important; }
+
+footer .logo-icon { background:var(--nx-kelp)!important;color:#fff!important; }
+
+footer p,
+footer small { color:var(--nx-silver)!important; }
+
+footer {
+  background-color: var(--nx-abyss) !important;
+  color: var(--nx-mist) !important;
+}
+
+footer p,
+footer small {
+  color: var(--nx-silver) !important;
+}
+
+footer .logo-icon { background: #3a2d16 !important; }
+
+footer { background:#080907!important;border-top:1px solid var(--nx-border)!important;color:#8e9085!important; }
