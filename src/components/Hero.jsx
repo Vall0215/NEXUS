@@ -2,7 +2,6 @@ const markup = `<section id="inicio" class="hero hero-reimagined">
             <div class="hero-backdrop"></div>
             <div class="hero-orbit hero-orbit-one"></div>
             <div class="hero-orbit hero-orbit-two"></div>
-
             <div class="hero-copy">
                 <div class="badge"><span class="badge-pulse"></span> INTELIGENCIA ENERGÉTICA · NEXUS</div>
                 <h1 class="nx-masked-heading" aria-label="El futuro energético se decide hoy.">
@@ -19,18 +18,14 @@ const markup = `<section id="inicio" class="hero hero-reimagined">
                     <button class="secondary-button" onclick="mostrarDemo()">Conocer NEXUS <span>▶</span></button>
                 </div>
             </div>
-
             <div class="hero-art nexus-scene nx-energy-core" aria-label="Visualización tridimensional de un núcleo de energía solar con anillos orbitales">
                 <div class="scene-halo"></div>
-
             </div>
-
             <div class="hero-bottomline">
                 <span>UNA NUEVA FORMA DE PLANIFICAR LA ENERGÍA</span>
                 <span class="scroll-cue">DESLIZA PARA EXPLORAR <b>↓</b></span>
             </div>
         </section>
-
         <div class="nx-energy-marquee" aria-label="NEXUS: energía, datos e inteligencia">
             <div class="nx-marquee-track">
                 <div class="nx-marquee-group">
@@ -53,6 +48,5 @@ const markup = `<section id="inicio" class="hero hero-reimagined">
                 </div>
             </div>
         </div>
-
         <div class="nx-section-transition" aria-hidden="true"><span></span><i></i></div>`;
 export default function Hero(){return <div className="react-fragment" dangerouslySetInnerHTML={{__html:markup}}/>;}
