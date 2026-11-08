@@ -5,7 +5,7 @@
   "description": "NEXUS - intelligent energy analysis and planning platform",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build && node server.js",
     "dev": "node --watch server.js",
     "build": "vite build"
   },
