@@ -60,10 +60,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     L.tileLayer(
-        "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+        "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
         {
             attribution:
-                'Tiles &copy; Esri — Sources: Esri, HERE, Garmin, OpenStreetMap contributors',
+                'Tiles courtesy of HOT &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+            subdomains: "abc",
             maxZoom: 19
         }
     ).addTo(nexusMap);
