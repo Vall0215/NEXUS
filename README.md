@@ -1,14 +1,14 @@
-# NEXUS
+<img width="1024" height="341" alt="image" src="https://github.com/user-attachments/assets/855c4dfd-1827-4825-90ec-c55249bacc03" />
 
-### Inteligencia energética
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-NEXUS es un proyecto académico que nace del interés por explorar nuevas tecnologías, trabajar con fuentes de datos científicos y desarrollar soluciones digitales aplicadas a problemáticas reales.
+**NEXUS** es un proyecto universitario que nace del interés por explorar nuevas tecnologías, trabajar con fuentes de datos científicos y desarrollar soluciones digitales aplicadas a problemáticas reales.
 
 La idea surge al observar una de las dificultades presentes en Barranquilla: los altos costos de la energía eléctrica y la necesidad de encontrar alternativas más sostenibles para su aprovechamiento.
 
 A partir de esto, NEXUS propone una plataforma que combina información ambiental, análisis energético y herramientas de simulación para explorar el potencial de las energías renovables en diferentes ubicaciones.
 
-## ¿Por qué NEXUS?
+## ¿Por qué elegir NEXUS?
 
 El desarrollo de este proyecto también representa una oportunidad para experimentar con herramientas de visualización geográfica, procesamiento de datos y conexión con fuentes de información externas.
 
@@ -26,7 +26,7 @@ NEXUS reúne diferentes herramientas dentro de una misma plataforma:
 - **Copiloto energético:** espacio de asistencia para orientar consultas y decisiones relacionadas con la planificación energética.
 - **Visualización 3D:** representación tridimensional interactiva que complementa la experiencia de exploración de la plataforma.
 
-## ¿A quién está dirigido?
+## ¿Cual es el publico objetivo?
 
 NEXUS está pensado como una herramienta de apoyo para diferentes perfiles interesados en la energía y las alternativas renovables:
 
@@ -36,12 +36,10 @@ NEXUS está pensado como una herramienta de apoyo para diferentes perfiles inter
 - Desarrolladores de proyectos de energías renovables.
 - Personas interesadas en explorar información y escenarios energéticos.
 
-## Propósito del proyecto
+## ¿Cual es nuestro objetivo?
 
-NEXUS busca demostrar cómo la tecnología, los datos y la visualización pueden trabajar en conjunto para facilitar la comprensión del potencial energético de una región.
-
-Es también un espacio de aprendizaje y experimentación en el que se integran diferentes herramientas de desarrollo para construir una solución con aplicación en un contexto real.
+NEXUS busca demostrar cómo la tecnología, los datos y la visualización pueden trabajar en conjunto para facilitar la comprensión del potencial energético de una región. Es también un espacio de aprendizaje y experimentación en el que se integran diferentes herramientas de desarrollo para construir una solución con aplicación en un contexto real.
 
 ---
 
-**NEXUS · El futuro energético se decide hoy.**
+              **· El futuro energético se decide hoy, te brindamos inteligencia para elegir mejor, y energia para avanzar ·**
